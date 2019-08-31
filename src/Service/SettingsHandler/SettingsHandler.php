@@ -38,4 +38,11 @@ class SettingsHandler implements SettingsHandlerInterface
         $this->entityManager->remove($settings);
         $this->entityManager->flush();
     }
+
+    public function showSettings(): ?array
+    {
+        return $this->entityManager->getRepository(Settings::class)->findAll();
+    }
+
+
 }

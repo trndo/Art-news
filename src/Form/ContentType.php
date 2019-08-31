@@ -4,7 +4,6 @@
 namespace App\Form;
 
 
-use App\Form\ContentForm\ContentAbstractType;
 use App\Model\ContentModel;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\AbstractType;
@@ -16,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContentType extends ContentAbstractType
+class ContentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

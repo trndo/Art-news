@@ -4,21 +4,28 @@
 namespace App\Service\ContentHandler\ResumeHandler;
 
 
+use App\Collection\ResumeCollection;
 use App\Entity\Resume;
 use App\Entity\ResumeTranslation;
 use App\Model\ContentModel;
+use App\Repository\ResumeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class ResumeHandler
+class ResumeHandler implements ResumeHandlerInterface, DisplayResumeArticle
 {
     /**
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var ResumeRepository
+     */
+    private $resumeRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, ResumeRepository $resumeRepository)
     {
         $this->entityManager = $entityManager;
+        $this->resumeRepository = $resumeRepository;
     }
 
     public function createResumeSlide(ContentModel $model): void
@@ -65,5 +72,10 @@ class ResumeHandler
         }
 
         $this->deleteResumeSlide($resume);
+    }
+
+    public function showSlides(): ?ResumeCollection
+    {
+        return new ResumeCollection($this->resumeRepository->getAllSlides());
     }
 }
