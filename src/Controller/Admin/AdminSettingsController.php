@@ -57,7 +57,7 @@ class AdminSettingsController extends AbstractController
             return $this->redirectToRoute('');
         }
 
-        return $this->render('settings_controller/updateSettings.html.twig',[
+        return $this->render('admin/settings_controller/updateSettings.html.twig',[
             'settings' => $form->createView()
         ]);
     }

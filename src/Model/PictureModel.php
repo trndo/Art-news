@@ -4,10 +4,12 @@
 namespace App\Model;
 
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 class PictureModel
 {
     /**
-     * @var string|null
+     * @var UploadedFile|null
      */
     private $photo;
 
@@ -32,18 +34,18 @@ class PictureModel
     private $photos;
 
     /**
-     * @return string|null
+     * @return UploadedFile|null
      */
-    public function getPhoto(): ?string
+    public function getPhoto(): ?UploadedFile
     {
         return $this->photo;
     }
 
     /**
-     * @param string|null $photo
+     * @param UploadedFile|null $photo
      * @return PictureModel
      */
-    public function setPhoto(?string $photo): PictureModel
+    public function setPhoto(?UploadedFile $photo): self
     {
         $this->photo = $photo;
         return $this;
@@ -61,7 +63,7 @@ class PictureModel
      * @param string|null $title
      * @return PictureModel
      */
-    public function setTitle(?string $title): PictureModel
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
         return $this;
@@ -79,7 +81,7 @@ class PictureModel
      * @param string|null $body
      * @return PictureModel
      */
-    public function setBody(?string $body): PictureModel
+    public function setBody(?string $body): self
     {
         $this->body = $body;
         return $this;
@@ -97,7 +99,7 @@ class PictureModel
      * @param string|null $locale
      * @return PictureModel
      */
-    public function setLocale(?string $locale): PictureModel
+    public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
         return $this;
@@ -115,7 +117,7 @@ class PictureModel
      * @param array|null $photos
      * @return PictureModel
      */
-    public function setPhotos(?array $photos): PictureModel
+    public function setPhotos(?array $photos): self
     {
         $this->photos = $photos;
         return $this;

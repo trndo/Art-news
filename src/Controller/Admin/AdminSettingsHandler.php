@@ -20,7 +20,7 @@ class AdminSettingsHandler extends AbstractController
     {
         $settings = $settingsHandler->showSettings();
 
-        return $this->render('settings_controller/showSettings.html.twig',[
+        return $this->render('admin/settings_controller/showSettings.html.twig',[
             'settings' => $settings
         ]);
     }

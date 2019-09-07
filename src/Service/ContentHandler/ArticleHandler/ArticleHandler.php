@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Service\ContentHandler\ResumeHandler;
+namespace App\Service\ContentHandler\ArticleHandler;
 
 
 use App\Collection\ArticleCollection;
@@ -9,11 +9,13 @@ use App\Entity\Article;
 use App\Entity\ArticleTranslation;
 use App\Model\ContentModel;
 use App\Repository\ArticleRepository;
-use App\Service\ContentHandler\ArticleHandler\DisplayArticleInterface;
+use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ArticleHandler implements ArticleHandlerInterface, DisplayArticleInterface
+class ArticleHandler implements DisplayArticleInterface, ArticleHandlerInterface
 {
+    private const UPLOADS_IMAGES_DIR = 'images/';
     /**
      * @var EntityManagerInterface
      */
@@ -22,16 +24,21 @@ class ArticleHandler implements ArticleHandlerInterface, DisplayArticleInterface
      * @var ArticleRepository
      */
     private $articleRepository;
+    /**
+     * @var FileManagerInterface
+     */
+    private $fileManager;
 
     /**
      * ArticleHandler constructor.
      * @param EntityManagerInterface $entityManager
      * @param ArticleRepository $articleRepository
      */
-    public function __construct(EntityManagerInterface $entityManager, ArticleRepository $articleRepository)
+    public function __construct(EntityManagerInterface $entityManager, ArticleRepository $articleRepository, FileManagerInterface $fileManager)
     {
         $this->entityManager = $entityManager;
         $this->articleRepository = $articleRepository;
+        $this->fileManager = $fileManager;
     }
 
     public function createArticle(ContentModel $model): void
@@ -40,12 +47,13 @@ class ArticleHandler implements ArticleHandlerInterface, DisplayArticleInterface
         $articleTranslation = new ArticleTranslation();
 
         $articleTranslation->setTitle($model->getTitle())
-           ->setBody($model->getBody())
-           ->setDescription($this->processBody($model->getBody(),70))
-           ->setLocale($model->getLocale());
+            ->setBody($model->getBody())
+            ->setDescription($this->processBody($model->getBody(),70))
+            ->setLocale($model->getLocale());
 
-        $article->setPhoto($model->getPhoto())
-            ->addArticleTranslation($articleTranslation);
+        $this->uploadPhoto($article, $model);
+
+        $article->addArticleTranslation($articleTranslation);
 
         $this->entityManager->persist($article);
         $this->entityManager->flush();
@@ -54,7 +62,7 @@ class ArticleHandler implements ArticleHandlerInterface, DisplayArticleInterface
 
     public function deleteArticle(Article $article): void
     {
-        if ($article){
+        if ($article) {
             $this->entityManager->remove($article);
             $this->entityManager->flush();
         }
@@ -78,9 +86,15 @@ class ArticleHandler implements ArticleHandlerInterface, DisplayArticleInterface
             ->setTitle($model->getTitle())
             ->setDescription($this->processBody($model->getBody(),70));
         $article = $articleTranslation->getArticle();
-        $article->setPhoto($model->getPhoto());
+
+        $this->uploadPhoto($article, $model, $article->getPhoto());
 
         $this->entityManager->flush();
+    }
+
+    public function showArticles(): ?ArticleCollection
+    {
+        return new ArticleCollection($this->articleRepository->getAllArticles());
     }
 
     private function processBody(string $text,int $length): string
@@ -88,9 +102,11 @@ class ArticleHandler implements ArticleHandlerInterface, DisplayArticleInterface
         return strip_tags(substr($text,0,$length));
     }
 
-
-    public function showArticles(): ?ArticleCollection
+    private function uploadPhoto(Article $article, ContentModel $model, ?string $photo = null): void
     {
-        return new ArticleCollection($this->articleRepository->getAllArticles());
+        if ($model->getPhoto() instanceof UploadedFile) {
+            $photo = $this->fileManager->uploadFile($model->getPhoto(), self::UPLOADS_IMAGES_DIR, $photo);
+            $article->setPhoto($photo);
+        }
     }
 }

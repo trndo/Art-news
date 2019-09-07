@@ -3,22 +3,22 @@
 
 namespace App\Controller\Admin;
 
-
 use App\Entity\Article;
 use App\Entity\ArticleTranslation;
 use App\Form\ContentType;
 use App\Mapper\ArticleMapper;
 use App\Model\ContentModel;
-use App\Service\ContentHandler\ResumeHandler\ArticleHandlerInterface;
+use App\Service\ContentHandler\ArticleHandler\ArticleHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminArticleHandlerController extends AbstractController
+
+class AdminHandlerArticleController extends AbstractController
 {
     /**
-     * @Route("/artadmin/articles/create", "createArticle")
+     * @Route("/artadmin/articles/create", name="createArticle")
      * @param Request $request
      * @param ArticleHandlerInterface $articleHandler
      * @return Response
@@ -33,10 +33,10 @@ class AdminArticleHandlerController extends AbstractController
             $data = $form->getData();
             $articleHandler->createArticle($data);
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('showAllArticles');
         }
 
-        return $this->render('article_controller/createArticle.html.twig',[
+        return $this->render('admin/article_controller/createArticle.html.twig',[
             'form' => $form->createView()
         ]);
     }
@@ -58,10 +58,10 @@ class AdminArticleHandlerController extends AbstractController
             $data = $form->getData();
             $articleHandler->updateArticle($data, $articleTranslation);
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('showAllArticles');
         }
 
-        return $this->render('article_controller/updateArticle.html.twig',[
+        return $this->render('admin/article_controller/updateArticle.html.twig',[
             'form' => $form->createView()
         ]);
     }
@@ -76,7 +76,7 @@ class AdminArticleHandlerController extends AbstractController
     {
         $articleHandler->deleteTranslation($articleTranslation);
 
-        return  $this->redirectToRoute('');
+        return  $this->redirectToRoute('showAllArticles');
     }
 
     /**
@@ -89,8 +89,6 @@ class AdminArticleHandlerController extends AbstractController
     {
         $articleHandler->deleteArticle($article);
 
-        return  $this->redirectToRoute('');
+        return  $this->redirectToRoute('showAllArticles');
     }
-
-
 }

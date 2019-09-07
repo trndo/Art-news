@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminResumeHandlerController extends AbstractController
 {
     /**
-     * @Route("/artadmin/articles/create", "createArticle")
+     * @Route("/artadmin/articles/create", name="createResumeSlide")
      * @param Request $request
      * @param ResumeHandlerInterface $resumeHandler
      * @return Response
@@ -36,7 +36,7 @@ class AdminResumeHandlerController extends AbstractController
             return $this->redirectToRoute('');
         }
 
-        return $this->render('resume_controller/createResumeSlide.html.twig',[
+        return $this->render('admin/resume_controller/createResumeSlide.html.twig',[
             'form' => $form->createView()
         ]);
     }
@@ -61,7 +61,7 @@ class AdminResumeHandlerController extends AbstractController
             return $this->redirectToRoute('');
         }
 
-        return $this->render('resume_controller/updateResumeSlide.html.twig',[
+        return $this->render('admin/resume_controller/updateResumeSlide.html.twig',[
             'form' => $form->createView()
         ]);
     }

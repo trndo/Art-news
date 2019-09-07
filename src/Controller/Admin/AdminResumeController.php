@@ -12,15 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminResumeController extends AbstractController
 {
     /**
-     * @Route("/artadmin/articles", name="showAllArticles")
+     * @Route("/artadmin/slides", name="showAllSlides")
      * @param DisplayResumeArticle $displayResumeArticle
      * @return Response
      */
-    public function showAllArticles(DisplayResumeArticle $displayResumeArticle): Response
+    public function showAllSlides(DisplayResumeArticle $displayResumeArticle): Response
     {
         $slides = $displayResumeArticle->showSlides();
 
-        return $this->render('resume_controller/showAllSlides.html.twig',[
+        return $this->render('admin/resume_controller/showAllSlides.html.twig',[
             'slides' => $slides
         ]);
     }

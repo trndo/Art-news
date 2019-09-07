@@ -9,10 +9,13 @@ use App\Entity\Resume;
 use App\Entity\ResumeTranslation;
 use App\Model\ContentModel;
 use App\Repository\ResumeRepository;
+use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ResumeHandler implements ResumeHandlerInterface, DisplayResumeArticle
 {
+    private const UPLOADS_IMAGES_DIR = 'resume/';
     /**
      * @var EntityManagerInterface
      */
@@ -21,11 +24,16 @@ class ResumeHandler implements ResumeHandlerInterface, DisplayResumeArticle
      * @var ResumeRepository
      */
     private $resumeRepository;
+    /**
+     * @var FileManagerInterface
+     */
+    private $fileManager;
 
-    public function __construct(EntityManagerInterface $entityManager, ResumeRepository $resumeRepository)
+    public function __construct(EntityManagerInterface $entityManager, ResumeRepository $resumeRepository, FileManagerInterface $fileManager)
     {
         $this->entityManager = $entityManager;
         $this->resumeRepository = $resumeRepository;
+        $this->fileManager = $fileManager;
     }
 
     public function createResumeSlide(ContentModel $model): void
@@ -37,8 +45,9 @@ class ResumeHandler implements ResumeHandlerInterface, DisplayResumeArticle
             ->setBody($model->getBody())
             ->setLocale($model->getLocale());
 
-        $resume->setPhoto($model->getPhoto())
-            ->addResumeTranslation($resumeTranslation);
+        $resume->addResumeTranslation($resumeTranslation);
+
+        $this->uploadPhoto($resume, $model);
 
         $this->entityManager->persist($resume);
         $this->entityManager->flush();
@@ -49,7 +58,8 @@ class ResumeHandler implements ResumeHandlerInterface, DisplayResumeArticle
         $resumeTranslation->setBody($model->getBody())
             ->setTitle($model->getTitle());
         $resume = $resumeTranslation->getResume();
-        $resume->setPhoto($model->getPhoto());
+
+        $this->uploadPhoto($resume, $model, $resume->getPhoto());
 
         $this->entityManager->flush();
     }
@@ -77,5 +87,13 @@ class ResumeHandler implements ResumeHandlerInterface, DisplayResumeArticle
     public function showSlides(): ?ResumeCollection
     {
         return new ResumeCollection($this->resumeRepository->getAllSlides());
+    }
+
+    private function uploadPhoto(Resume $resume, ContentModel $model, ?string $photo = null): void
+    {
+        if ($model->getPhoto() instanceof UploadedFile) {
+            $photo = $this->fileManager->uploadFile($model->getPhoto(), self::UPLOADS_IMAGES_DIR, $photo);
+            $resume->setPhoto($photo);
+        }
     }
 }

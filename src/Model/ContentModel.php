@@ -4,6 +4,8 @@
 namespace App\Model;
 
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 class ContentModel
 {
     /**
@@ -22,7 +24,7 @@ class ContentModel
     private $locale;
 
     /**
-     * @var string|null
+     * @var UploadedFile|null
      */
     private $photo;
 
@@ -38,7 +40,7 @@ class ContentModel
      * @param string|null $title
      * @return ContentModel
      */
-    public function setTitle(?string $title): ContentModel
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
         return $this;
@@ -56,7 +58,7 @@ class ContentModel
      * @param string|null $body
      * @return ContentModel
      */
-    public function setBody(?string $body): ContentModel
+    public function setBody(?string $body): self
     {
         $this->body = $body;
         return $this;
@@ -74,25 +76,25 @@ class ContentModel
      * @param string|null $locale
      * @return ContentModel
      */
-    public function setLocale(?string $locale): ContentModel
+    public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return UploadedFile|null
      */
-    public function getPhoto(): ?string
+    public function getPhoto(): ?self
     {
         return $this->photo;
     }
 
     /**
-     * @param string|null $photo
+     * @param UploadedFile|null $photo
      * @return ContentModel
      */
-    public function setPhoto(?string $photo): ContentModel
+    public function setPhoto(?UploadedFile $photo): self
     {
         $this->photo = $photo;
         return $this;

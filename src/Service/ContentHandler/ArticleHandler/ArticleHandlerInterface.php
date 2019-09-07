@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Service\ContentHandler\ResumeHandler;
+namespace App\Service\ContentHandler\ArticleHandler;
 
 
 use App\Entity\Article;
