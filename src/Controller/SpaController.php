@@ -17,8 +17,6 @@ class SpaController extends AbstractController
      */
     public function index(): Response
     {
-        $this->createForm(ContentType::class, new Article())->getData();
-
         return $this->render('spa/spa.html.twig');
     }
 }

@@ -3,10 +3,9 @@
 
 namespace App\Service\ContentHandler\ResumeHandler;
 
-
 use App\Collection\ResumeCollection;
 
-interface DisplayResumeArticle
+interface DisplayResumeInterface
 {
     public function showSlides(): ?ResumeCollection;
 }
