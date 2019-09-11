@@ -13,7 +13,7 @@ use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ResumeHandler implements ResumeHandlerInterface, DisplayResumeArticle
+class ResumeHandler implements ResumeHandlerInterface, DisplayResumeInterface
 {
     private const UPLOADS_IMAGES_DIR = 'resume/';
     /**

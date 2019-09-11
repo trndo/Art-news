@@ -4,7 +4,7 @@
 namespace App\Controller\Admin;
 
 
-use App\Service\ContentHandler\ResumeHandler\DisplayResumeArticle;
+use App\Service\ContentHandler\ResumeHandler\DisplayResumeInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,10 +13,10 @@ class AdminResumeController extends AbstractController
 {
     /**
      * @Route("/artadmin/slides", name="showAllSlides")
-     * @param DisplayResumeArticle $displayResumeArticle
+     * @param DisplayResumeInterface $displayResumeArticle
      * @return Response
      */
-    public function showAllSlides(DisplayResumeArticle $displayResumeArticle): Response
+    public function showAllSlides(DisplayResumeInterface $displayResumeArticle): Response
     {
         $slides = $displayResumeArticle->showSlides();
 
