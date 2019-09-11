@@ -29,7 +29,8 @@ class PictureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => PictureModel::class
+            'data_class' => PictureModel::class,
+            'translation' => false
         ]);
     }
 

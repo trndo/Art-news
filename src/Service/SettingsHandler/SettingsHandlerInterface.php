@@ -22,4 +22,6 @@ interface SettingsHandlerInterface
      * @param Settings $settings
      */
     public function deleteSettings(Settings $settings): void ;
+
+    public function showSettings(): ?array;
 }
