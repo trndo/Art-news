@@ -5,7 +5,6 @@ namespace App\Service\ContentHandler\ArticleHandler;
 
 
 use App\Collection\ArticleCollection;
-use App\Entity\Article;
 
 interface DisplayArticleInterface
 {

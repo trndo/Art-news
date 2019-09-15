@@ -50,4 +50,9 @@ class FileManager implements FileManagerInterface
     {
         return \md5(\uniqid($filename));
     }
+
+    public function deleteFile(string $folder, string $fileName): void
+    {
+        unlink($this->getUploadDir().$folder.$fileName);
+    }
 }

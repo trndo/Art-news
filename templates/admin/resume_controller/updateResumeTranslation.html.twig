@@ -2,8 +2,8 @@
 {% block content %}
     <div class="card">
         <div class="card-header card-header-primary">
-            <h2 class="card-title">Редагування контакту</h2>
-            <h4 class="category">Відредагуйте ваші контакти для того щоб з вами можна було зв'язатися!</h4>
+            <h2 class="card-title">Редагування перекладу</h2>
+            <h4 class="category">Вы редагуєте выбраний переклад!</h4>
         </div>
         <br>
         <div class="container">
@@ -11,30 +11,26 @@
                 <div class="col-12">
                     {{ form_start(form) }}
                     <div class="form-group">
-                        {{ form_row(form.name,{
+                        {{ form_row(form.locale,{
                             'attr': {
                                 'class': 'form-control',
+                                'value': resumeTranslation.locale
                             }
                         }) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.translationName,{
+                        {{ form_row(form.title,{
                             'attr': {
-                                'class': 'form-control'
+                                'class': ' form-control'
                             }
                         }) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.email,{
+                        {{ form_widget(form.body,{
                             'attr': {
-                                'class': 'form-control'
-                            }
-                        }) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_widget(form.phone,{
-                            'attr': {
-                                'class': 'form-control',
+                                'class': 'textarea form-control',
+                                'placeholder':'Зміст статті',
+                                'rows': 10
                             },
 
                         }) }}
@@ -52,3 +48,4 @@
         </div>
     </div>
 {% endblock %}
+

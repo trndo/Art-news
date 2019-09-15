@@ -31,6 +31,11 @@ class Settings
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $translationName;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,6 +77,18 @@ class Settings
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getTranslationName(): ?string
+    {
+        return $this->translationName;
+    }
+
+    public function setTranslationName(?string $translationName): self
+    {
+        $this->translationName = $translationName;
 
         return $this;
     }

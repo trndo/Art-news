@@ -1,0 +1,33 @@
+{% extends 'admin/admin_base.html.twig' %}
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-icon card-header-rose">
+                    <div class="card-icon">
+                        {{ resumeTranslation.locale }}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <small class="text-secondary">Заголовок</small>
+                    <h2 class="card-title">{{ resumeTranslation.title }}</h2>
+                    <small class="text-secondary">Зміст слайду резюме</small>
+                    <p>
+                        {{ resumeTranslation.body }}
+                    </p>
+                    <small class="text-secondary">Дії</small>
+                    <br>
+                    <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href='{{ path('updateResumeTranslation',
+                        {'id': resumeTranslation.resume.id,'translation_id': resumeTranslation.id }) }}'">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-danger" onclick="window.location.href='{{ path('deleteResumeTranslation',{'id': resumeTranslation.id}) }}'">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

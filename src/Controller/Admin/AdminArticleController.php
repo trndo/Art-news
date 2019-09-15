@@ -19,7 +19,7 @@ class AdminArticleController extends AbstractController
     {
         $articles = $displayArticle->showArticles();
 
-        return $this->render('admin/article_controller/showAllArticles.html.twig',[
+        return $this->render('admin/article_controller/showAllArticles.html.twig', [
             'articles' => $articles
         ]);
     }

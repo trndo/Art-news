@@ -6,9 +6,12 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\ArticleTranslation;
 use App\Form\ContentType;
+use App\Form\PhotoType;
 use App\Mapper\ArticleMapper;
 use App\Model\ContentModel;
 use App\Service\ContentHandler\ArticleHandler\ArticleHandlerInterface;
+use App\Service\ContentHandler\ArticleHandler\ArticleTranslationInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,25 +47,27 @@ class AdminHandlerArticleController extends AbstractController
     /**
      * @Route("/artadmin/articles/{id}/edit", name="updateArticle")
      * @param Request $request
-     * @param ArticleTranslation $articleTranslation
+     * @param Article $article
      * @param ArticleHandlerInterface $articleHandler
      * @return Response
      */
-    public function updateArticle(Request $request, ArticleTranslation $articleTranslation, ArticleHandlerInterface $articleHandler): Response
+    public function updateArticle(Request $request, Article $article, ArticleHandlerInterface $articleHandler): Response
     {
-        $model = ArticleMapper::entityToModel($articleTranslation);
-        $form = $this->createForm(ContentType::class,$model);
+        $form = $this->createForm(PhotoType::class,$article);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            /** @var Article $data*/
             $data = $form->getData();
-            $articleHandler->updateArticle($data, $articleTranslation);
+            $photo = $request->files->get('photo')['photo'];
+            $articleHandler->updatePhoto($data, $photo);
 
             return $this->redirectToRoute('showAllArticles');
         }
 
         return $this->render('admin/article_controller/updateArticle.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'article' => $article
         ]);
     }
 
@@ -91,4 +96,79 @@ class AdminHandlerArticleController extends AbstractController
 
         return  $this->redirectToRoute('showAllArticles');
     }
+
+    /**
+     * @Route("/artadmin/articles/{id}/translation/create", name="createArticleTranslation")
+     * @param Request $request
+     * @param Article $article
+     * @param ArticleTranslationInterface $articleTranslation
+     * @return Response
+     */
+    public function createArticleTranslation(Request $request, Article $article, ArticleTranslationInterface $articleTranslation): Response
+    {
+        $model = new ContentModel();
+        $options['translation'] = true;
+        $form = $this->createForm(ContentType::class, $model, $options);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $articleTranslation->createArticleTranslation($article, $data);
+
+            return $this->redirectToRoute('showAllArticles');
+        }
+
+        return $this->render('admin/article_controller/addArticleTranslation.html.twig',[
+            'form' => $form->createView(),
+            'article' => $article
+        ]);
+    }
+
+    /**
+     * @Route("/artadmin/articles/{id}/translation/{translation_id}/show", name="showArticleTranslation")
+     * @ParamConverter("articleTranslation", options={"id" = "translation_id"})
+     * @param Article $article
+     * @param ArticleTranslation $articleTranslation
+     * @param ArticleTranslationInterface $translation
+     * @return Response
+     */
+    public function showArticleTranslation(Article $article, ArticleTranslation $articleTranslation, ArticleTranslationInterface $translation): Response
+    {
+        $articleTranslation = $translation->getTranslationBy($articleTranslation->getId());
+
+        return $this->render('admin/article_controller/showArticleTranslations.html.twig', [
+            'articleTranslation' => $articleTranslation
+        ]);
+    }
+
+    /**
+     * @Route("/artadmin/articles/{id}/translation/{translation_id}/edit", name="updateArticleTranslation")
+     * @ParamConverter("translation", options={"id" = "translation_id"})
+     * @param Request $request
+     * @param Article $article
+     * @param ArticleTranslation $translation
+     * @param ArticleTranslationInterface $articleTranslation
+     * @return Response
+     */
+    public function updateArticleTranslation(Request $request, Article $article, ArticleTranslation $translation, ArticleTranslationInterface $articleTranslation): Response
+    {
+        $model = ArticleMapper::entityTranslationToModel($translation);
+        $options['translation'] = true;
+        $form = $this->createForm(ContentType::class, $model, $options);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $articleTranslation->updateTranslation($translation, $data);
+
+            return $this->redirectToRoute('showAllArticles');
+        }
+
+        return $this->render('admin/article_controller/updateArticleTranslation.html.twig',[
+            'form' => $form->createView(),
+            'articleTranslation' => $translation
+        ]);
+    }
+
+
 }

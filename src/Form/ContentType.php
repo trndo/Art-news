@@ -22,21 +22,23 @@ class ContentType extends AbstractType
     {
         $builder->add('locale', TextType::class, [
             'attr' => [
-                'value' => $options['translation'] ? 'EN' : 'UA'
+                'value' => $options['translation'] ? 'EN' : 'UA',
+                'readonly' => true
             ],
             'label' => 'Мова',
-            'disabled' => true
+
         ])
             ->add('title',TextType::class,[
                 'label' => 'Заголовок'
             ])
             ->add('body',TextareaType::class,[
-                'label' => 'Зміст'
-            ])
-            ->add('photo',FileType::class,[
-                'label' => 'Фото'
-            ])
-            ->add('save',SubmitType::class,[
+                'label' => 'Зміст',
+            ]);
+            if (!$options['translation'])
+                $builder->add('photo',FileType::class,[
+                    'label' => 'Фото'
+                ]);
+            $builder->add('save',SubmitType::class,[
                 'label' => 'Зберегти'
             ]);
 

@@ -1,0 +1,28 @@
+{% extends 'admin/admin_base.html.twig' %}
+{% block content %}
+    <div class="card">
+    <div class="card-header card-header-primary">
+        <h2 class="card-title">Редагування фото слайду</h2>
+        <h4 class="category">Щоб редагувати переклад - перейдіть за посиланням "Переглянути укр./англ. переклад" і виберіть редагування</h4>
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    <br>
+                    <img src="/uploads/resume/{{ slide.photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
+                    {{ form_row(form.photo) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.save,{
+                            'attr' : {
+                                'class': 'btn btn-primary'
+                            }
+                    }) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

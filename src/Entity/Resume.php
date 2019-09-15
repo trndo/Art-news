@@ -27,7 +27,7 @@ class Resume
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ResumeTranslation", mappedBy="resume")
+     * @ORM\OneToMany(targetEntity="App\Entity\ResumeTranslation", mappedBy="resume", cascade={"persist","remove"})
      */
     private $resumeTranslations;
 
@@ -82,5 +82,15 @@ class Resume
         }
 
         return $this;
+    }
+
+    public function getTranslation(string $locale)
+    {
+        return $this->resumeTranslations
+            ->filter(function ($translation) use ($locale){
+                /** @var ArticleTranslation $translation */
+                return $translation->getLocale() == $locale;
+            })
+            ->first();
     }
 }

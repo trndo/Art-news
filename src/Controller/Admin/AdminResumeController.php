@@ -13,12 +13,12 @@ class AdminResumeController extends AbstractController
 {
     /**
      * @Route("/artadmin/slides", name="showAllSlides")
-     * @param DisplayResumeInterface $displayResumeArticle
+     * @param DisplayResumeInterface $displayResume
      * @return Response
      */
-    public function showAllSlides(DisplayResumeInterface $displayResumeArticle): Response
+    public function showAllSlides(DisplayResumeInterface $displayResume): Response
     {
-        $slides = $displayResumeArticle->showSlides();
+        $slides = $displayResume->showSlides();
 
         return $this->render('admin/resume_controller/showAllSlides.html.twig',[
             'slides' => $slides

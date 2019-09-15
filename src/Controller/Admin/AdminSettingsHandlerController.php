@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminSettingsHandler extends AbstractController
+class AdminSettingsHandlerController extends AbstractController
 {
     /**
      * @Route("/artadmin/settings", name="showSettings")
