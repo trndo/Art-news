@@ -85,7 +85,7 @@ class ContentModel
     /**
      * @return UploadedFile|null
      */
-    public function getPhoto(): ?self
+    public function getPhoto(): ?UploadedFile
     {
         return $this->photo;
     }
