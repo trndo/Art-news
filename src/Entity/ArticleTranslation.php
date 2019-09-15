@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleTranslationRepository")
@@ -40,6 +41,12 @@ class ArticleTranslation
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $locale;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -102,6 +109,26 @@ class ArticleTranslation
     public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+
+    /**
+     * @param $slug
+     * @return $this
+     */
+    public function setSlug($slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

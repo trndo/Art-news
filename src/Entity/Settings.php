@@ -26,6 +26,11 @@ class Settings
      */
     private $phone;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,6 +41,9 @@ class Settings
         return $this->email;
     }
 
+    /**
+     * @return
+     */
     public function setEmail(?string $email): self
     {
         $this->email = $email;
@@ -51,6 +59,19 @@ class Settings
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

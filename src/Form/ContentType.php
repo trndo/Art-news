@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,9 +27,18 @@ class ContentType extends AbstractType
             'label' => 'Мова',
             'disabled' => true
         ])
-            ->add('title',TextType::class)
-            ->add('body',TextareaType::class)
-            ->add('photo',FileType::class);
+            ->add('title',TextType::class,[
+                'label' => 'Заголовок'
+            ])
+            ->add('body',TextareaType::class,[
+                'label' => 'Зміст'
+            ])
+            ->add('photo',FileType::class,[
+                'label' => 'Фото'
+            ])
+            ->add('save',SubmitType::class,[
+                'label' => 'Зберегти'
+            ]);
 
     }
 

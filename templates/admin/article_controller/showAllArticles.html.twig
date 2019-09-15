@@ -1,1 +1,83 @@
 {% extends 'admin/admin_base.html.twig' %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                Щоб створити статтю , натисніть на кнопку &nbsp; <button type="button" class="btn btn-info" onclick="window.location.href='{{ path('createArticle') }}'">Створити статтю</button>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" >
+                        <div class="card-header card-header-success">
+                            <h4 class="card-title">Блог</h4>
+                            <p class="card-category">На цій сторінці ви можете знайти всі ваші статті.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                    <th>
+                                        Номер статті
+                                    </th>
+                                    <th>
+                                        Фото
+                                    </th>
+                                    <th>
+                                        Укр. переклад
+                                    </th>
+                                    <th>
+                                        Англ. переклад
+                                    </th>
+                                    <th>
+                                        Дата створення
+                                    </th>
+                                    <th>
+                                        Дії
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="td-actions">
+                                            <button type="button" rel="tooltip" class="btn btn-success">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button type="button" rel="tooltip" class="btn btn-danger">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

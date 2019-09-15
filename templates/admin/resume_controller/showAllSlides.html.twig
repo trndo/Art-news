@@ -1,0 +1,71 @@
+{% extends 'admin/admin_base.html.twig' %}
+{% block content %}
+    {{ parent() }}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" >
+                        <div class="card-header card-header-success">
+                            <h4 class="card-title">Резюме</h4>
+                            <p class="card-category">На цій сторінці ви можете знайти всі слайди вашого резюме.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                    <th>
+                                        Номер статті
+                                    </th>
+                                    <th>
+                                        Фото
+                                    </th>
+                                    <th>
+                                        Укр. переклад
+                                    </th>
+                                    <th>
+                                        Англ. переклад
+                                    </th>
+                                    <th>
+                                        Дата створення
+                                    </th>
+                                    <th>
+                                        Дії
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="td-actions">
+                                            <button type="button" rel="tooltip" class="btn btn-success">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button type="button" rel="tooltip" class="btn btn-danger">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

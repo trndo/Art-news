@@ -27,9 +27,10 @@ class Article
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ArticleTranslation", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleTranslation", mappedBy="article", cascade={"persist","remove"})
      */
     private $articleTranslations;
+
 
     public function __construct()
     {
