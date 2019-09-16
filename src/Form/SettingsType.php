@@ -16,10 +16,21 @@ class SettingsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name',TextType::class)
-            ->add('phone',TextType::class)
-            ->add('email',EmailType::class)
-            ->add('save',SubmitType::class);
+        $builder->add('name',TextType::class,[
+                'label' => "Ім'я"
+            ])
+            ->add('translationName',TextType::class,[
+                'label' => "Ім'я на англ."
+            ])
+            ->add('phone',TextType::class,[
+                'label' => 'Номер телефону'
+            ])
+            ->add('email',EmailType::class,[
+                'label' => 'Електронна пошта'
+            ])
+            ->add('save',SubmitType::class, [
+                'label' => 'Зберегти'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

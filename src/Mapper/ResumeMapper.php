@@ -19,4 +19,18 @@ final class ResumeMapper
 
         return $model;
     }
+
+    public static function entityTranslationToModel(ResumeTranslation $resumeTranslation): ContentModel
+    {
+        $model = new ContentModel();
+
+        $resume = $resumeTranslation->getResume();
+
+        $model->setBody($resumeTranslation->getBody())
+            ->setTitle($resumeTranslation->getTitle())
+            ->setLocale($resumeTranslation->getLocale());
+
+        return $model;
+
+    }
 }

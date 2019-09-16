@@ -30,11 +30,11 @@ class AdminSettingsController extends AbstractController
             $data = $form->getData();
             $settingsHandler->createSettings($data);
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('showSettings');
         }
 
-        return $this->render('settings_controller/createSettings.html.twig',[
-            'settings' => $form->createView()
+        return $this->render('admin/settings_controller/createSettings.html.twig',[
+            'form' => $form->createView()
         ]);
     }
 
@@ -54,11 +54,11 @@ class AdminSettingsController extends AbstractController
             $data = $form->getData();
             $settingsHandler->updateSettings($data);
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('showSettings');
         }
 
         return $this->render('admin/settings_controller/updateSettings.html.twig',[
-            'settings' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
 
@@ -72,6 +72,6 @@ class AdminSettingsController extends AbstractController
     {
         $settingsHandler->deleteSettings($settings);
 
-        $this->redirectToRoute('');
+       return $this->redirectToRoute('showSettings');
     }
 }

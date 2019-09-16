@@ -1,48 +1,57 @@
 {% extends 'admin/admin_base.html.twig' %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            {{ form_start(form)}}
-             <div class="col-12">
-                 <div class="form-group">
-
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h2 class="card-title">Створення статті</h2>
+            <h4 class="category">При створенні статті, мова за замовчуванням - українська! Додати англійську ви можете в меню всіх статтей!</h4>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {{ form_start(form) }}
+                    <div class="form-group">
                         {{ form_row(form.locale,{
                             'attr': {
                                 'class': 'form-control'
                             }
                         }) }}
-                 </div>
-                 <div class="form-group">
-                     {{ form_row(form.title,{
-                         'attr': {
-                             'class': 'textarea form-control'
-                         }
-                     }) }}
-                 </div>
-                 <div class="form-group">
-                     {{ form_widget(form.body,{
-                         'attr': {
-                             'class': 'form-control'
-                         }
-                     }) }}
-                 </div>
-                 <div class="form-group form-file-upload form-file-multiple">
-                     {{ form_row(form.photo,{
-                         'attr': {
-                             'class': 'form-control inputFileVisible'
-                         }
-                     }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.title,{
+                            'attr': {
+                                'class': 'textarea form-control'
+                            }
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(form.body,{
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder':'Зміст статті',
+                                'rows': 10
+                            },
 
-                 </div>
-                 <div class="form-group">
-                     {{ form_row(form.save,{
-                         'attr': {
-                             'class': 'btn btn-success'
-                         }
-                     }) }}
-                 </div>
-             </div>
-            {{ form_end(form) }}
+                        }) }}
+                    </div>
+                    <div class="form-group form-file-upload form-file-multiple">
+                        {{ form_row(form.photo,{
+                            'attr': {
+                                'class': 'form-control inputFileVisible'
+                            }
+                        }) }}
+
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.save,{
+                            'attr': {
+                                'class': 'btn btn-primary'
+                            }
+                        }) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

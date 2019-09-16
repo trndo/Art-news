@@ -1,21 +1,27 @@
 {% extends 'admin/admin_base.html.twig' %}
 {% block content %}
-    {{ parent() }}
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+        </div>
+    </nav>
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" >
                         <div class="card-header card-header-success">
-                            <h4 class="card-title">Резюме</h4>
-                            <p class="card-category">На цій сторінці ви можете знайти всі слайди вашого резюме.</p>
+                            <h4 class="card-title">CV</h4>
+                            <p class="card-category">На цій сторінці ви можете знайти всі слайди впшого CV.</p>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="navbar-wrapper">
+                                Щоб створити слайд , натисніть на кнопку &nbsp;<button type="button" class="btn btn-info" onclick="window.location.href='{{ path('createResumeSlide') }}'">Створити слайд</button>
+                            </div>
+                            <div class="table-responsive text-center">
                                 <table class="table">
                                     <thead class="text-primary">
                                     <th>
-                                        Номер статті
+                                        Номер слайду
                                     </th>
                                     <th>
                                         Фото
@@ -34,31 +40,41 @@
                                     </th>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Dakota Rice
-                                        </td>
-                                        <td>
-                                            Niger
-                                        </td>
-                                        <td>
-                                            Niger
-                                        </td>
-                                        <td>
-                                            Oud-Turnhout
-                                        </td>
-                                        <td class="td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    {% for slide in slides %}
+                                        <tr>
+                                            <td>
+                                                {{ slide.id }}
+                                            </td>
+                                            <td>
+                                                <img src="/uploads/resume/{{ slide.photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
+                                            </td>
+                                            <td>
+                                                {% if slide.getTranslation('UA') %}
+                                                    <a href='{{ path('showResumeTranslation',{'id': slide.id,'translation_id': slide.getTranslation('UA').id}) }}'>Переглянути переклад</a>
+                                                {% else %}
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createResumeTranslationFor',{'id': slide.id,'locale': 'UA'}) }}'">Додати переклад</button>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if slide.getTranslation('EN') %}
+                                                    <a href='{{ path('showResumeTranslation',{'id': slide.id,'translation_id': slide.getTranslation('EN').id}) }}'>Переглянути переклад</a>
+                                                {% else %}
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createResumeTranslationFor',{'id': slide.id,'locale': 'EN'}) }}'">Додати переклад</button>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {{ slide.createdAt|date("Y-m-d") }}
+                                            </td>
+                                            <td class="td-actions">
+                                                <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href='{{ path('updateResumeSlide',{'id': slide.id}) }}'">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-danger" onclick="window.location.href='{{ path('deleteResumeSlide',{'id': slide.id}) }}'">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

@@ -22,4 +22,20 @@ final class ArticleMapper
         return $model;
 
     }
+
+    public static function entityTranslationToModel(ArticleTranslation $articleTranslation): ContentModel
+    {
+        $model = new ContentModel();
+
+        $article = $articleTranslation->getArticle();
+
+        $model->setBody($articleTranslation->getBody())
+            ->setTitle($articleTranslation->getTitle())
+            ->setLocale($articleTranslation->getLocale());
+
+        return $model;
+
+    }
+
+
 }

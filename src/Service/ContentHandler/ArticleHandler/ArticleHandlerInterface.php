@@ -7,6 +7,7 @@ namespace App\Service\ContentHandler\ArticleHandler;
 use App\Entity\Article;
 use App\Entity\ArticleTranslation;
 use App\Model\ContentModel;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface ArticleHandlerInterface
 {
@@ -29,6 +30,12 @@ interface ArticleHandlerInterface
      * @param ContentModel $model
      * @param ArticleTranslation $articleTranslation
      */
-    public function updateArticle(ContentModel $model, ArticleTranslation $articleTranslation): void;
+    public function updateArticleTranslation(ContentModel $model, ArticleTranslation $articleTranslation): void;
+
+    /**
+     * @param Article $article
+     * @param UploadedFile|null $file
+     */
+    public function updatePhoto(Article $article, ?UploadedFile $file): void;
 
 }

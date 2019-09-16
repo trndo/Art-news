@@ -84,4 +84,14 @@ class Article
 
         return $this;
     }
+
+    public function getTranslation(string $locale)
+    {
+        return $this->articleTranslations
+            ->filter(function ($translation) use ($locale){
+                /** @var ArticleTranslation $translation */
+                return $translation->getLocale() == $locale;
+            })
+            ->first();
+    }
 }

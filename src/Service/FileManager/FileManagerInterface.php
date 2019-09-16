@@ -8,7 +8,22 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface FileManagerInterface
 {
-    public function uploadFile(?UploadedFile $uploadedFile, string $folder, $hash = null): ?string ;
+    /**
+     * @param UploadedFile|null $uploadedFile
+     * @param string $folder
+     * @param null $hash
+     * @return string|null
+     */
+    public function uploadFile(?UploadedFile $uploadedFile, string $folder, $hash = null): ?string;
 
-    public function getUploadDir(): ?string ;
+    /**
+     * @return string|null
+     */
+    public function getUploadDir(): ?string;
+
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+    public function deleteFile(string $folder, string $fileName): void;
 }

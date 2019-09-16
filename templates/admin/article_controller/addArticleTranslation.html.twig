@@ -2,39 +2,41 @@
 {% block content %}
     <div class="card">
         <div class="card-header card-header-primary">
-            <h2 class="card-title">Редагування контакту</h2>
-            <h4 class="category">Відредагуйте ваші контакти для того щоб з вами можна було зв'язатися!</h4>
+            <h2 class="card-title">Створення перекладу</h2>
+            <h4 class="category">Ви створюєте переклад вашої статті!</h4>
         </div>
         <br>
         <div class="container">
+            {% if article.getTranslation("EN") %}
+                {% set locale = "UA" %}
+            {% elseif article.getTranslation("UA") %}
+                {% set locale = "EN" %}
+            {% endif %}
+            {% dump(locale) %}
             <div class="row">
                 <div class="col-12">
                     {{ form_start(form) }}
                     <div class="form-group">
-                        {{ form_row(form.name,{
+                        {{ form_row(form.locale,{
                             'attr': {
                                 'class': 'form-control',
+                                'value': locale
                             }
                         }) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.translationName,{
+                        {{ form_row(form.title,{
                             'attr': {
-                                'class': 'form-control'
+                                'class': 'textarea form-control'
                             }
                         }) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.email,{
-                            'attr': {
-                                'class': 'form-control'
-                            }
-                        }) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_widget(form.phone,{
+                        {{ form_widget(form.body,{
                             'attr': {
                                 'class': 'form-control',
+                                'placeholder':'Зміст статті',
+                                'rows': 10
                             },
 
                         }) }}

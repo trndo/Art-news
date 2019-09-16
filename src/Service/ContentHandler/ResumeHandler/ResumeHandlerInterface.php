@@ -7,6 +7,7 @@ namespace App\Service\ContentHandler\ResumeHandler;
 use App\Entity\Resume;
 use App\Entity\ResumeTranslation;
 use App\Model\ContentModel;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface ResumeHandlerInterface
 {
@@ -30,4 +31,10 @@ interface ResumeHandlerInterface
      * @param ResumeTranslation $resumeTranslation
      */
     public function deleteTranslation(ResumeTranslation $resumeTranslation): void;
+
+    /**
+     * @param Resume $resume
+     * @param UploadedFile|null $file
+     */
+    public function updateResumePhoto(Resume $resume, ?UploadedFile $file): void;
 }
