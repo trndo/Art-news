@@ -27,4 +27,16 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getArticleBySlug(string $slug): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->addSelect('at')
+            ->leftJoin('a.articleTranslations','at')
+            ->andWhere('at.slug = :slug')
+            ->setParameter('slug',$slug)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }
