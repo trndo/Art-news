@@ -15,39 +15,38 @@
       <div class="logo">
         <a href="#" class="simple-text logo-mini">
           ArtNews
-          <img id="logo" src="#" alt="ArtNews">
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item {% if selected|default('articles') == 'articles' %}active{% endif %}">
-            <a class="nav-link" href="{{ path('showAllArticles') }}">
+          <li class="nav-item {% if selected|default('main') == 'main' %}active{% endif %}">
+            <a class="nav-link" href="{{ path('admin_index') }}">
               <i class="material-icons">dashboard</i>
-              <p>Главная</p>
+              <p>Головна</p>
             </a>
           </li>
-          <li class="nav-item {% if selected|default('slides') == 'slides' %}active{% endif %}">
+          <li class="nav-item {% if selected|default('main') == 'articles' %}active{% endif %}">
+            <a class="nav-link" href="{{ path('showAllArticles') }}">
+              <i class="material-icons">ballot</i>
+              <p>Статтi</p>
+            </a>
+          </li>
+          <li class="nav-item {% if selected|default('main') == 'slides' %}active{% endif %}">
             <a class="nav-link" href="{{ path('showAllSlides') }}">
-              <i class="material-icons">supervisor_account</i>
-              <p>Пользователи</p>
+              <i class="material-icons">import_contacts</i>
+              <p>Cv</p>
             </a>
           </li>
-          <li class="nav-item {% if selected|default('pictures') == 'pictures' %}active{% endif %}">
+          <li class="nav-item {% if selected|default('main') == 'pictures' %}active{% endif %}">
             <a class="nav-link" href="#">
-              <i class="material-icons">book</i>
-              <p>Темы</p>
+              <i class="material-icons">insert_photo</i>
+              <p>Малюнки</p>
             </a>
           </li>
-          <li class="nav-item {% if selected|default('settings') == 'settings' %}active{% endif %}">
-            <a class="nav-link" href="{{ path('showSettings') }}">
-              <i class="material-icons">work</i>
-              <p>Специальности</p>
-            </a>
-          </li>
-          <li class="nav-item {% if selected|default('clients') == 'clients' %}active{% endif %}">
+          <li class="nav-item {% if selected|default('main') == 'settings' %}active{% endif %}">
             <a class="nav-link" href="#">
-              <i class="material-icons">label</i>
-              <p>Метки</p>
+              <i class="material-icons">settings_applications</i>
+              <p>Налаштування</p>
             </a>
           </li>
           <!-- your sidebar here -->

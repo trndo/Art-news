@@ -60,6 +60,7 @@ Encore
         Popper: 'popper.js/dist/umd/popper'
     }))
 
+    .enableVueLoader()
     // enables Sass/SCSS support
     //.enableSassLoader()
 

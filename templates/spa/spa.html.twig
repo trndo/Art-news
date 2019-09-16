@@ -1,4 +1,16 @@
 {% extends 'base.html.twig' %}
+{% block metatags %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900&display=swap&subset=chinese-simplified,cyrillic,vietnamese"
+          rel="stylesheet">
+{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 {% block body %}
-    <h1>This is spa</h1>
+    <div id="app"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
