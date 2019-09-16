@@ -159,5 +159,10 @@ class ArticleHandler implements DisplayArticleInterface, ArticleHandlerInterface
         }
     }
 
+    public function showArticleBy(?string $slug): ?Article
+    {
+        return $this->articleRepository->getArticleBySlug($slug);
+    }
+
 
 }
