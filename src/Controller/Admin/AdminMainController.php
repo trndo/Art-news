@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class SpaController extends AbstractController
+class AdminMainController extends AbstractController
 {
     /**
-     * @Route(path="/{spa_route}", name="spa", requirements={ "spa_route" = ".*" })
+     * @Route("/artadmin", name="admin_index")
      * @return Response
      */
     public function index(): Response
     {
-        return $this->render('spa/spa.html.twig');
+        return $this->render('admin/main_controller/index.html.twig');
     }
 }
