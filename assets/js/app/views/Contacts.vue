@@ -106,9 +106,6 @@
         height: 530px;
         width: 650px;
     }
-    .main_content{
-        height: 600px;
-    }
     .text2{
         display: none;
     }
@@ -116,9 +113,7 @@
         display: none;
     }
     @media all and (max-width: 990px){
-        .main_content{
-            overflow: hidden;
-        }
+
         .feedback_img{
             display: block;
         }
@@ -127,12 +122,10 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .main_content{
-            height: 100%;
-        }
         .content{
             width: 90%;
             height: 80%;
+            margin: 0 auto 0 auto;
         }
         .left{
             width: 386px;
@@ -184,11 +177,6 @@
         main{
             height: 140vh;
             width: 100%;
-        }
-        .main_content{
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
         }
 
         .slick-list{
