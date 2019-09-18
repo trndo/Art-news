@@ -25,4 +25,12 @@ class PictureCollection implements \IteratorAggregate
     {
        return new \ArrayIterator($this->pictures);
     }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->pictures;
+    }
 }
