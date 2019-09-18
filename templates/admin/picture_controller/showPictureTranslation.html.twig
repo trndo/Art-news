@@ -1,0 +1,33 @@
+{% extends 'admin/admin_base.html.twig' %}
+{% set selected = 'slides' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-icon card-header-rose">
+                    <div class="card-icon">
+                        {{ pictureTranslation.locale }}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <small class="text-secondary">Назва картини</small>
+                    <h2 class="card-title">{{ pictureTranslation.title }}</h2>
+                    <small class="text-secondary">Опис картини</small>
+                    <p>
+                        {{ pictureTranslation.body }}
+                    </p>
+                    <small class="text-secondary">Дії</small>
+                    <br>
+                    <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href='{{ path('updatePictureTranslation',{'id': pictureTranslation.picture.id,'translation_id': pictureTranslation.id }) }}'">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-danger" onclick="window.location.href='{{ path('deletePictureTranslation',{'id': pictureTranslation.id}) }}'">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

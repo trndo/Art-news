@@ -53,14 +53,14 @@
                                                 {% if article.getTranslation('UA') %}
                                                      <a href='{{ path('showArticleTranslation',{'id': article.id,'translation_id': article.getTranslation('UA').id}) }}'>Переглянути переклад</a>
                                                 {% else %}
-                                                     <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id}) }}'">Додати переклад</button>
+                                                     <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id,'locale': 'UA'}) }}'">Додати переклад</button>
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if article.getTranslation('EN') %}
                                                     <a href='{{ path('showArticleTranslation',{'id': article.id,'translation_id': article.getTranslation('EN').id}) }}'>Переглянути переклад</a>
                                                 {% else %}
-                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id}) }}'">Додати переклад</button>
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id,'locale': 'EN'}) }}'">Додати переклад</button>
                                                 {% endif %}
                                             </td>
                                             <td>

@@ -11,12 +11,12 @@
                 <div class="col-md-12">
                     <div class="card" >
                         <div class="card-header card-header-success">
-                            <h4 class="card-title">Малюнки</h4>
-                            <p class="card-category">На цій сторінці ви можете знайти всі ваші малюнки.</p>
+                            <h4 class="card-title">Картини</h4>
+                            <p class="card-category">На цій сторінці ви можете знайти всі ваші картини.</p>
                         </div>
                         <div class="card-body">
                             <div class="navbar-wrapper">
-                                Щоб завантажити новий малюнок , натисніть на кнопку &nbsp; <button type="button" class="btn btn-info" onclick="window.location.href='{{ path('picture_create') }}'">Створити малюнок</button>
+                                Щоб завантажити новий малюнок , натисніть на кнопку &nbsp; <button type="button" class="btn btn-info" onclick="window.location.href='{{ path('createPicture') }}'">Створити малюнок</button>
                             </div>
                             <div class="table-responsive text-center">
                                 <table class="table">
@@ -50,18 +50,18 @@
                                                 <img src="/uploads/pictures/{{ picture.photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
                                             </td>
                                             <td>
-                                               {# {% if article.getTranslation('UA') %}
-                                                    <a href='{{ path('showArticleTranslation',{'id': article.id,'translation_id': article.getTranslation('UA').id}) }}'>Переглянути переклад</a>
+                                                {% if picture.getTranslation('UA') %}
+                                                    <a href='{{ path('showPictureTranslation',{'id': picture.id,'translation_id': picture.getTranslation('UA').id}) }}'>Переглянути переклад</a>
                                                 {% else %}
-                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id}) }}'">Додати переклад</button>
-                                                {% endif %}#}
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createPictureTranslation',{'id': picture.id,'locale': 'UA'}) }}'">Додати переклад</button>
+                                                {% endif %}
                                             </td>
                                             <td>
-                                               {# {% if article.getTranslation('EN') %}
-                                                    <a href='{{ path('showArticleTranslation',{'id': article.id,'translation_id': article.getTranslation('EN').id}) }}'>Переглянути переклад</a>
+                                                {% if picture.getTranslation('EN') %}
+                                                    <a href='{{ path('showPictureTranslation',{'id': picture.id,'translation_id': picture.getTranslation('EN').id}) }}'>Переглянути переклад</a>
                                                 {% else %}
-                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id}) }}'">Додати переклад</button>
-                                                {% endif %}#}
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createPictureTranslation',{'id': picture.id,'locale': 'EN'}) }}'">Додати переклад</button>
+                                                {% endif %}
                                             </td>
                                             <td>
                                                 {{ picture.createdAt|date("Y-m-d") }}
@@ -70,7 +70,7 @@
                                                 <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href='{#{{ path('updateArticle',{'id': article.id}) }}#}'">
                                                     <i class="material-icons">edit</i>
                                                 </button>
-                                                <button type="button" rel="tooltip" class="btn btn-danger" onclick="window.location.href='{#{{ path('deleteArticle',{'id': article.id}) }}#}'">
+                                                <button type="button" rel="tooltip" class="btn btn-danger" onclick="window.location.href='{{ path('deletePicture',{'id': picture.id}) }}'">
                                                     <i class="material-icons">close</i>
                                                 </button>
                                             </td>

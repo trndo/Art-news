@@ -1,10 +1,10 @@
 {% extends 'admin/admin_base.html.twig' %}
-{% set selected = 'pictures' %}
+{% set selected = 'slides' %}
 {% block content %}
     <div class="card">
         <div class="card-header card-header-primary">
-            <h2 class="card-title">Створення малюнка</h2>
-            <h4 class="category">При створенні малюнка, мова за замовчуванням - українська! Додати англійську ви можете в меню всіх малюнків!</h4>
+            <h2 class="card-title">Редагування перекладу</h2>
+            <h4 class="category">Вы редагуєте выбраний переклад!</h4>
         </div>
         <br>
         <div class="container">
@@ -14,34 +14,27 @@
                     <div class="form-group">
                         {{ form_row(form.locale,{
                             'attr': {
-                                'class': 'form-control'
+                                'class': 'form-control',
+                                'value': pictureTranslation.locale
                             }
                         }) }}
                     </div>
                     <div class="form-group">
                         {{ form_row(form.title,{
                             'attr': {
-                                'class': 'textarea form-control'
+                                'class': ' form-control'
                             }
                         }) }}
                     </div>
                     <div class="form-group">
                         {{ form_widget(form.body,{
                             'attr': {
-                                'class': 'form-control',
-                                'placeholder':'Зміст статті',
+                                'class': 'textarea form-control',
+                                'placeholder':'Опис статті',
                                 'rows': 10
                             },
 
                         }) }}
-                    </div>
-                    <div class="form-group form-file-upload form-file-multiple">
-                        {{ form_row(form.photo,{
-                            'attr': {
-                                'class': 'form-control inputFileVisible'
-                            }
-                        }) }}
-
                     </div>
                     <div class="form-group">
                         {{ form_row(form.save,{

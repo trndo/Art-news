@@ -27,7 +27,7 @@ class Picture
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PictureTranslation", mappedBy="picture")
+     * @ORM\OneToMany(targetEntity="App\Entity\PictureTranslation", mappedBy="picture", cascade={"persist","remove"})
      */
     private $pictureTranslations;
 
@@ -119,5 +119,15 @@ class Picture
         }
 
         return $this;
+    }
+
+    public function getTranslation(string $locale)
+    {
+        return $this->pictureTranslations
+            ->filter(function ($translation) use ($locale){
+                /** @var PictureTranslation $translation */
+                return $translation->getLocale() == $locale;
+            })
+            ->first();
     }
 }

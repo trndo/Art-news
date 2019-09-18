@@ -5,9 +5,12 @@ namespace App\Service\PictureHandler;
 use App\Collection\PictureCollection;
 use App\Entity\Picture;
 use App\Entity\PictureTranslation;
+use App\Model\ContentModel;
 use App\Model\PictureModel;
 use App\Repository\PictureRepository;
+use App\Repository\PictureTranslationRepository;
 use App\Service\FileManager\FileManager;
+use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class PictureHandler implements PictureHandlerInterface, PictureTranslationHandlerInterface
@@ -28,19 +31,25 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
      * @var FileManager
      */
     private $fileUploader;
+    /**
+     * @var PictureTranslationRepository
+     */
+    private $pictureTranslationRepository;
 
     /**
      * PictureHandler constructor.
      * @param EntityManagerInterface $em
      * @param PictureRepository $repository
-     * @param FileManager $fileManager
+     * @param FileManagerInterface $fileManager
+     * @param PictureTranslationRepository $pictureTranslationRepository
      */
     public function __construct(EntityManagerInterface $em,
-                                PictureRepository $repository, FileManager $fileManager)
+                                PictureRepository $repository, FileManagerInterface $fileManager, PictureTranslationRepository $pictureTranslationRepository)
     {
         $this->em = $em;
         $this->pictureRepo = $repository;
         $this->fileUploader = $fileManager;
+        $this->pictureTranslationRepository = $pictureTranslationRepository;
     }
 
     /**
@@ -78,6 +87,34 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
             ->setPicture($picture);
 
         $this->em->persist($pictureTrans);
+        $this->em->flush();
+    }
+
+    public function getTranslationBy(?int $id): ?PictureTranslation
+    {
+        return $this->pictureTranslationRepository->find($id);
+    }
+
+    public function updateTranslation(PictureTranslation $pictureTranslation, ContentModel $model): void
+    {
+        $pictureTranslation->setTitle($model->getTitle())
+            ->setBody($model->getBody());
+
+        $this->em->flush();
+    }
+
+    public function deletePicture(Picture $picture): void
+    {
+        if ($picture) {
+            $this->fileUploader->deleteFile(self::UPLOADS_IMAGES_DIR, $picture->getPhoto());
+            $this->em->remove($picture);
+            $this->em->flush();
+        }
+    }
+
+    public function deleteTranslation(PictureTranslation $articleTranslation): void
+    {
+        $this->em->remove($articleTranslation);
         $this->em->flush();
     }
 }

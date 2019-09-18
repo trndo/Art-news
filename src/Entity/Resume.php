@@ -88,7 +88,7 @@ class Resume
     {
         return $this->resumeTranslations
             ->filter(function ($translation) use ($locale){
-                /** @var ArticleTranslation $translation */
+                /** @var ResumeTranslation $translation */
                 return $translation->getLocale() == $locale;
             })
             ->first();
