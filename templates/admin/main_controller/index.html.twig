@@ -1,25 +1,7 @@
 {% extends 'admin/admin_base.html.twig' %}
 {% block content %}
     <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <div class="card-header card-header-text card-header-primary">
-                    <div class="card-text">
-                        <h4 class="card-title">Here is the Text</h4>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <img class="card-img-top" src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                    <img class="card-img-top" src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80" alt="Card image cap">
-                </div>
-                <div class="card-body">
-                    <img class="card-img-top" src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80" alt="Card image cap">
-                </div>
-            </div>
-        </div>
-        <div class="col-9">
+        <div class="col-12">
             <div class="card card-nav-tabs card-plain">
                 <div class="card-header card-header-warning">
                     <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
@@ -35,13 +17,65 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#history" data-toggle="tab">Слайд 3</a>
                                 </li>
+                                <li class="nav-item ml-2">
+                                    <button class="btn btn-secondary btn-round">Додати слайд &nbsp&nbsp<i class="fas fa-plus-circle"></i></button>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div><div class="card-body ">
                     <div class="tab-content text-center">
                         <div class="tab-pane active" id="home">
-                            <p>I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it&#x2019;s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="slide-section">
+                                        <img src="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="slide-section">
+                                        <div class="no-picture">
+                                            2
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="slide-section">
+                                        <div class="no-picture">
+                                            3
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="slide-section">
+                                        <div class="no-picture">
+                                            4
+                                            <div class="add-picture" title="Додати малюнок">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 mt-3">
+                                <div class="col-12">
+                                    <div class="space-section"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="slide-section"></div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="slide-section"></div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="slide-section"></div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="slide-section"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane" id="updates">
                             <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>

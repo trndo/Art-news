@@ -206,56 +206,16 @@
     .slick-slide .last{
         display: none;
     }
-    .top_images > img, .bottom_images > img{
-        width: 30%;
-        height: 30%;
-    }
-    .content{
+
+   /* .slick-list{
         width: 681px;
         height: 730px;
-        margin: 0 auto 0 auto;
-    }
-    .slick-list{
-        width: 681px;
-        height: 730px;
-    }
-    .feedback_form img{
-        width: 445px;
-        height: 217px;
-    }
+    }*/
+
     .next, .prev{
         visibility: hidden;
     }
-    .form_gallery{
-        width: 207px;
-        height: 145.92px;
-    }
-    .form_name_gallery input, .form_number_gallery input{
-        width: 207px;
-        height: 34.78px;
-        
-    }
-    .form_name_gallery input{
-        font-size: 24px;
-        line-height: 33px;
-    }
-    .form_number_gallery input{
-        font-size: 18px;
-        line-height: 25px;
-    }
-    .second_gallery{
-        width: 207px;
-        height: 26.29px;
-        font-size: 12px;
-        line-height: 16px;
-    }
-    .button_gallery button{
-        width: 155.25px;
-        height: 44.28px;
-        font-weight: bold;
-        font-size: 24px;
-        line-height: 33px;
-    }
+
     .container{
         
         /* display: flex; */
@@ -339,31 +299,14 @@
     .footer_text{
         margin-right: 6px;
     }
-    .wrapper_mobile{
-        display: block;
-        margin: 0 auto;
 
-        width: 271px;
-        height: 100%;
-    }
     .hidden_icons{
         transform: scale(0.8);
     }
-    .mobile_slider{
-        height: 290px;
-    }
+
     .slick-list{
         width: 271px;
         margin: auto;
-    }
-    .wrapper_desctop_gallery{
-        display: none;
-    }
-    .mobile_slider img{
-        display: block;
-        margin: auto;
-        width: 271px;
-        height: 271px;
     }
     .moree{
         text-decoration: none;
@@ -485,31 +428,8 @@
 
         color: #03503B;
     }
-    .form_gallery{
-        display: block;
-        margin-top: 5%;
-        height: 172px;
-        width: 261px;
-    }
-    .second_gallery{
-        display: block;
-        margin: auto;
-        text-align: center;
-    }
-    .form_name_gallery input, .form_number_gallery input{
-        width: 261px;
-        height: 41px;
-    }
-    .button_gallery, .button_gallery button{
-        width: 195.75px;
-        height: 52.2px;
-        margin: auto;
-    }
 }
 @media all and (min-height: 700px) and (max-width: 400px){
-    .wrapper_mobile{
-        transform: scale(1.2);
-    }
     .container{
         margin-bottom: 25%;
     }
@@ -518,9 +438,6 @@
 @media all and (max-height: 600px){
     .container{
         margin: 0;
-    }
-    .wrapper_mobile{
-        transform: scale(0.8);
     }
 }
 @media all and (max-width: 823px) and (max-height: 411px){
@@ -576,32 +493,16 @@
     .footer_text{
         margin-right: 6px;
     }
-    .wrapper_mobile{
-        display: block;
-        margin: 0 auto;
 
-        width: 271px;
-        height: 100%;
-    }
     .hidden_icons{
         transform: scale(0.8);
     }
-    .mobile_slider{
-        height: 290px;
-    }
+
     .slick-list{
         width: 271px;
         margin: auto;
     }
-    .wrapper_desctop_gallery{
-        display: none;
-    }
-    .mobile_slider img{
-        display: block;
-        margin: auto;
-        width: 271px;
-        height: 271px;
-    }
+
     .moree{
         text-decoration: none;
         position: absolute;
@@ -722,26 +623,7 @@
 
         color: #03503B;
     }
-    .form_gallery{
-        display: block;
-        margin-top: 5%;
-        height: 172px;
-        width: 261px;
-    }
-    .second_gallery{
-        display: block;
-        margin: auto;
-        text-align: center;
-    }
-    .form_name_gallery input, .form_number_gallery input{
-        width: 261px;
-        height: 41px;
-    }
-    .button_gallery, .button_gallery button{
-        width: 195.75px;
-        height: 52.2px;
-        margin: auto;
-    }
+
     .slick-dots{
         bottom: -20px;
     }

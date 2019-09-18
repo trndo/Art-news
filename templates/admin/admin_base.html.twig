@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item {% if selected|default('main') == 'pictures' %}active{% endif %}">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ path('pictures') }}">
               <i class="material-icons">insert_photo</i>
               <p>Малюнки</p>
             </a>
@@ -47,6 +47,12 @@
             <a class="nav-link" href="#">
               <i class="material-icons">settings_applications</i>
               <p>Налаштування</p>
+            </a>
+          </li>
+          <li class="nav-item {% if selected|default('main') == 'feedback' %}active{% endif %}">
+            <a class="nav-link" href="#">
+              <i class="material-icons">feedback</i>
+              <p>Зворотнiй зв'язок</p>
             </a>
           </li>
           <!-- your sidebar here -->

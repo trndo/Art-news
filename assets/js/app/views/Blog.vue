@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <div class="wrapper_desctop">
+        <div v-if="media" class="wrapper_desctop">
             <div class="content">
                 <div class="slide1">
                     <div class="blog_top">
@@ -131,7 +130,7 @@
                 <img src="../images/contactus_big.png" alt="">
             </div>
         </div>
-        <div class="wrapper_mobile-blog">
+        <div v-else class="wrapper_mobile-blog">
             <div class="mobile_slider">
                 <div class="slide1">
                     <div class="image">
@@ -247,7 +246,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -255,6 +253,11 @@
     import 'slick-carousel/slick/slick.min';
 
     export default {
+        computed:{
+            media(){
+                return window.screen.width > 414
+            }
+        },
         mounted() {
             $('.content').slick({
                 infinite: true,
@@ -280,6 +283,12 @@
 </script>
 
 <style scoped>
+
+    .wrapper_desctop{
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+    }
     .content{
         height: 500px;
         width: 616px;
@@ -380,19 +389,7 @@
 
     }
 
-    .next, .prev{
-        position: absolute;
-        z-index: 99;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 39px;
-        height: 39px;
-        background: #03503B;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        transition: 0.3s all;
-    }
-    .next{
+   /* .next{
         top: 45%;
         right: -12%;
     }
@@ -400,29 +397,13 @@
         top: 56%;
         right: -12%;
     }
-    .next:hover, .prev:hover{
-        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
-    }
-    .next:active, .prev:active{
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    }
     .slick-active{
         outline: none;
     }
     .slick-dots{
         margin-top: 25%;
-    }
-    .slick-dots li button::before{
-        content: '';
-        width: 9px;
-        height: 9px;
-        background: #FFFFFF;
-        color: #FFFFFF;
-    }
-    .slick-dots li.slick-active button:before{
-        background: #03503B;
-    }
+    }*/
 
     .contact_us-big{
         display: none;
@@ -430,6 +411,7 @@
     .wrapper_mobile-blog{
         display: none;
     }
+
     @media all and (max-width: 990px){
         .main_content{
             overflow: hidden;
@@ -452,21 +434,27 @@
             width: 351px;
         }
         .content{
+            width: 681px;
             height: 320px;
+            margin: 0 auto 0 auto;
         }
         .contact_us{
             display: none;
         }
     }
     @media all and (max-width: 500px){
+        .slick-dots {
+            bottom: -50px;
+        }
+
         .wrapper_desctop{
             display: none;
         }
         .container{
-            margin: 0;
+            margin: 0 !important;
         }
         .wrapper_mobile-blog{
-            margin: auto;
+            margin: 0 auto;
             padding: 15px;
             display: flex;
             flex-direction: column;
@@ -533,6 +521,10 @@
 
             color: #03503B;
         }
+        .mobile_slider{
+            height: 290px;
+        }
+
         .mobile_slider, .slick-track{
             height: 460px;
         }
@@ -561,7 +553,7 @@
             display: none;
         }
         .container{
-            margin: 0;
+            margin: 0 !important;
         }
         .wrapper_mobile-blog{
             margin: auto;
@@ -631,6 +623,11 @@
 
             color: #03503B;
         }
+
+        .mobile_slider{
+            height: 290px;
+        }
+
         .mobile_slider, .slick-track{
             height: 460px;
         }
@@ -656,3 +653,16 @@
         }
     }
 </style>
+<!--
+<style>
+    @media all and (max-width: 500px){
+        .container{
+            margin: 0 !important;
+        }
+    }
+    @media all and (max-width: 823px) and (max-height: 411px){
+        .container{
+            margin: 0 !important;
+        }
+    }
+</style>-->
