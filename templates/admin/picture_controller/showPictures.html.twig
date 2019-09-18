@@ -1,0 +1,88 @@
+{% extends 'admin/admin_base.html.twig' %}
+{% set selected = 'pictures' %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+        </div>
+    </nav>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" >
+                        <div class="card-header card-header-success">
+                            <h4 class="card-title">Малюнки</h4>
+                            <p class="card-category">На цій сторінці ви можете знайти всі ваші малюнки.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="navbar-wrapper">
+                                Щоб завантажити новий малюнок , натисніть на кнопку &nbsp; <button type="button" class="btn btn-info" onclick="window.location.href='{{ path('picture_create') }}'">Створити малюнок</button>
+                            </div>
+                            <div class="table-responsive text-center">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                    <th>
+                                        Номер малюнка
+                                    </th>
+                                    <th>
+                                        Титульна фотографiя
+                                    </th>
+                                    <th>
+                                        Укр. переклад назви
+                                    </th>
+                                    <th>
+                                        Англ. переклад назви
+                                    </th>
+                                    <th>
+                                        Дата створення
+                                    </th>
+                                    <th>
+                                        Дії
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                    {% for picture in pictures %}
+                                        <tr>
+                                            <td>
+                                                {{ picture.id }}
+                                            </td>
+                                            <td>
+                                                <img src="/uploads/pictures/{{ picture.photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
+                                            </td>
+                                            <td>
+                                               {# {% if article.getTranslation('UA') %}
+                                                    <a href='{{ path('showArticleTranslation',{'id': article.id,'translation_id': article.getTranslation('UA').id}) }}'>Переглянути переклад</a>
+                                                {% else %}
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id}) }}'">Додати переклад</button>
+                                                {% endif %}#}
+                                            </td>
+                                            <td>
+                                               {# {% if article.getTranslation('EN') %}
+                                                    <a href='{{ path('showArticleTranslation',{'id': article.id,'translation_id': article.getTranslation('EN').id}) }}'>Переглянути переклад</a>
+                                                {% else %}
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('createArticleTranslation',{'id': article.id}) }}'">Додати переклад</button>
+                                                {% endif %}#}
+                                            </td>
+                                            <td>
+                                                {{ picture.createdAt|date("Y-m-d") }}
+                                            </td>
+                                            <td class="td-actions">
+                                                <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href='{#{{ path('updateArticle',{'id': article.id}) }}#}'">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-danger" onclick="window.location.href='{#{{ path('deleteArticle',{'id': article.id}) }}#}'">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
