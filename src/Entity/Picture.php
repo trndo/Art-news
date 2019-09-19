@@ -36,6 +36,11 @@ class Picture
      */
     private $photos;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true, unique=true)
+     */
+    private $sliderPosition;
+
     public function __construct()
     {
         $this->pictureTranslations = new ArrayCollection();
@@ -129,5 +134,17 @@ class Picture
                 return $translation->getLocale() == $locale;
             })
             ->first();
+    }
+
+    public function getSliderPosition(): ?int
+    {
+        return $this->sliderPosition;
+    }
+
+    public function setSliderPosition(?int $sliderPosition): self
+    {
+        $this->sliderPosition = $sliderPosition;
+
+        return $this;
     }
 }

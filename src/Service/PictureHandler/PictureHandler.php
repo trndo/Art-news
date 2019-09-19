@@ -63,6 +63,15 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
 
     /**
      * @inheritDoc
+     * @return PictureCollection
+     */
+    public function getPicturesInSlider(): PictureCollection
+    {
+        return new PictureCollection($this->pictureRepo->findPicturesInSlider());
+    }
+
+    /**
+     * @inheritDoc
      * @param PictureModel $pictureModel
      */
     public function createPicture(PictureModel $pictureModel): void
@@ -116,5 +125,19 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
     {
         $this->em->remove($articleTranslation);
         $this->em->flush();
+    }
+
+    /**
+     * @inheritDoc
+     * @param int $picture
+     * @param int $position
+     */
+    public function addPictureOnSlide(int $picture, int $position): void
+    {
+        $picture = $this->pictureRepo->find($picture);
+        if($picture instanceof Picture){
+            $picture->setSliderPosition($position);
+            $this->em->flush();
+        }
     }
 }

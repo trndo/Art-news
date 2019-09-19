@@ -8,54 +8,53 @@
                     <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
                             <ul class="nav nav-tabs" data-tabs="tabs">
+                                {% if sliderContainer.slides is not empty %}
+                                {% for slide in sliderContainer.slides %}
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#home" data-toggle="tab">Слайд 1</a>
+                                    <a class="nav-link active" href="#slide-{{ loop.index }}" data-toggle="tab">Слайд {{ loop.index }}</a>
                                 </li>
+                                {% endfor %}
+                                {% else %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#updates" data-toggle="tab">Слайд 2</a>
+                                    <a class="nav-link" href="#slide-1" data-toggle="tab">Слайд 1</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#history" data-toggle="tab">Слайд 3</a>
-                                </li>
+                                {% endif %}
                                 <li class="nav-item ml-2">
                                     <button class="btn btn-secondary btn-round">Додати слайд &nbsp&nbsp<i class="fas fa-plus-circle"></i></button>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                </div><div class="card-body ">
+                </div>
+                <div class="card-body">
                     <div class="tab-content text-center">
-                        <div class="tab-pane active" id="home">
+                        {% set counter = 1 %}
+                        {% if sliderContainer.slides is not empty %}
+                        {% for slide in sliderContainer.slides %}
+                        <div class="tab-pane {% if loop.index == 1 %}active{% endif %}" id="slide-{{ loop.index }}">
                             <div class="row">
-                                <div class="col-3">
-                                    <div class="slide-section">
-                                        <img src="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="slide-section">
-                                        <div class="no-picture">
-                                            2
+                                {% for i in 0..3 %}
+                                    {% if slide.position(counter) is not null %}
+                                        <div class="col-3">
+                                            <div class="slide-section">
+                                                 <img src="/uploads/pictures/{{ slide.position(counter).photo }}" alt="">
+                                            </div>
+                                            {% set counter = counter + 1 %}
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="slide-section">
-                                        <div class="no-picture">
-                                            3
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="slide-section">
-                                        <div class="no-picture">
-                                            4
-                                            <div class="add-picture" title="Додати малюнок">
-                                                <i class="fas fa-plus-circle"></i>
+                                    {% else %}
+                                        <div class="col-3">
+                                            <div class="slide-section">
+                                                <div class="no-picture">
+                                                    {{ counter }}
+                                                    <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
+                                                        <i class="fas fa-plus-circle"></i>
+                                                    </div>
+                                                    {% set counter = counter + 1 %}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                             <div class="row mb-3 mt-3">
                                 <div class="col-12">
@@ -63,26 +62,70 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
-                                    <div class="slide-section"></div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="slide-section"></div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="slide-section"></div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="slide-section"></div>
-                                </div>
+                            {% for i in 3..6 %}
+                                {% if slide.position(counter) is not null %}
+                                    <div class="col-3">
+                                        <div class="slide-section">
+                                            <img src="/uploads/pictures/{{ slide.position(counter).photo }}" alt="">
+                                        </div>
+                                        {% set counter = counter + 1 %}
+                                    </div>
+                                {% else %}
+                                    <div class="col-3">
+                                        <div class="slide-section">
+                                            <div class="no-picture">
+                                                {{ counter }}
+                                                <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
+                                                    <i class="fas fa-plus-circle"></i>
+                                                </div>
+                                                {% set counter = counter + 1 %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                             </div>
                         </div>
-                        <div class="tab-pane" id="updates">
-                            <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                        {% endfor %}
+                        {% else %}
+                        <div class="tab-pane active" id="slide-1">
+                            <div class="row">
+                                {% for i in 0..3 %}
+                                        <div class="col-3">
+                                            <div class="slide-section">
+                                                <div class="no-picture">
+                                                    {{ counter }}
+                                                    <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
+                                                        <i class="fas fa-plus-circle"></i>
+                                                    </div>
+                                                    {% set counter = counter + 1 %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                {% endfor %}
+                            </div>
+                            <div class="row mb-3 mt-3">
+                                <div class="col-12">
+                                    <div class="space-section"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                {% for i in 3..6 %}
+                                        <div class="col-3">
+                                            <div class="slide-section">
+                                                <div class="no-picture">
+                                                    {{ counter }}
+                                                    <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
+                                                        <i class="fas fa-plus-circle"></i>
+                                                    </div>
+                                                    {% set counter = counter + 1 %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div class="tab-pane" id="history">
-                            <p> I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

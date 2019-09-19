@@ -37,4 +37,20 @@ class Slide
     {
         return isset($this->pictures[$key]) ? $this->pictures[$key] : null;
     }
+
+    /**
+     * Return a Picture by Position
+     * @param int $pos
+     * @return Picture|null
+     */
+    public function position(int $pos): ?Picture
+    {
+        foreach ($this->pictures as $picture){
+            /** @var Picture $picture */
+            if($picture->getSliderPosition() == $pos)
+                return $picture;
+        }
+
+        return null;
+    }
 }
