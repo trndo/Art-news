@@ -15,22 +15,30 @@ class PictureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title',TextType::class)
-            ->add('photo',FileType::class, [
+        $builder->add('title', TextType::class, [
+            'label' => 'Назва картини'
+        ]);
+        if (!$options['translation'])
+            $builder->add('photo', FileType::class, [
                 'attr' => [
                     'class' => 'form-control-file'
                 ],
                 'label' => 'Титульна фотографiя'
-            ])
-            ->add('body',TextareaType::class)
-            ->add('locale',TextType::class,[
+            ]);
+        $builder->add('body', TextareaType::class, [
             'attr' => [
-                'value' => $options['translation'] ? 'EN' : 'UA'
-            ],
-            'label' => 'Мова',
-            'disabled' => true
+                'placeholder' => 'Опис картини'
+            ]
         ])
-            ->add('save',SubmitType::class);
+            ->add('locale', TextType::class, [
+                'attr' => [
+                    'value' => $options['translation'] ? 'EN' : 'UA',
+                    'readonly' => true
+                ],
+                'label' => 'Мова',
+
+            ])
+            ->add('save', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

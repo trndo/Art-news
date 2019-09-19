@@ -12,6 +12,8 @@
                 {% set locale = "UA" %}
             {% elseif article.getTranslation("UA") %}
                 {% set locale = "EN" %}
+            {% else %}
+                {% set locale = app.request.get('locale') %}
             {% endif %}
             {% dump(locale) %}
             <div class="row">
