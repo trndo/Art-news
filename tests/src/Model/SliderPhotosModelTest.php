@@ -66,9 +66,9 @@ class SliderPhotosModelTest extends TestCase
             $arr3[] = new Picture();
 
         return [
-            /*[new PictureCollection($arr1), 2],
+            [new PictureCollection($arr1), 2],
             [new PictureCollection($arr2), 3],
-            [new PictureCollection([new Picture(), new Picture()]), 1],*/
+            [new PictureCollection([new Picture(), new Picture()]), 1],
             [new PictureCollection($arr3), 1]
         ];
     }

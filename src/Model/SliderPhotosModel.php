@@ -40,22 +40,21 @@ class SliderPhotosModel
      * @param array $pictures
      * @param int $start
      */
-    private function makeSlidersFromPictures(array $pictures, int $start = 0)
+    private function makeSlidersFromPictures(array $pictures)
     {
         $sliderPictures = [];
-        for ($i = $start; $i < $start + 8;$i++) {
-            if(isset($pictures[$i])){
-                $sliderPictures[] = $pictures[$i];
-            }
-            else {
-                if(!empty($sliderPictures))
-                    $this->slides[] = new Slide($sliderPictures);
-                return;
+        $count = count($pictures);
+        $nextSlide = 7;
+        for ($i = 0; $i < $count ;$i++) {
+            $sliderPictures[] = $pictures[$i];
+            if($i == $nextSlide){
+                $this->slides[] = new Slide($sliderPictures);
+                $sliderPictures = [];
+                $nextSlide += 8;
             }
         }
-
-        $this->slides[] = new Slide($sliderPictures);
-        $this->makeSlidersFromPictures($pictures,$start + 8);
+        if(!empty($sliderPictures))
+            $this->slides[] = new Slide($sliderPictures);
     }
 
 }
