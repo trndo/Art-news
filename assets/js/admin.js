@@ -6,6 +6,7 @@ require('./core/perfect-scrollbar.jquery.min');
 require('./core/bootstrap-selectpicker');
 require('./core/bootstrap-notify');
 
+
 (function() {
     isWindows = navigator.platform.indexOf('Win') > -1;
 

@@ -5,10 +5,16 @@ namespace App\Controller\Admin;
 
 
 use App\Service\SettingsHandler\SettingsHandlerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ * Class AdminSettingsHandlerController
+ * @package App\Controller\Admin
+ */
 class AdminSettingsHandlerController extends AbstractController
 {
     /**

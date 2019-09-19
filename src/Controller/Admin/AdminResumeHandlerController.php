@@ -12,12 +12,18 @@ use App\Mapper\ResumeMapper;
 use App\Model\ContentModel;
 use App\Service\ContentHandler\ResumeHandler\ResumeHandlerInterface;
 use App\Service\ContentHandler\ResumeHandler\ResumeTranslationInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ * Class AdminResumeHandlerController
+ * @package App\Controller\Admin
+ */
 class AdminResumeHandlerController extends AbstractController
 {
     /**

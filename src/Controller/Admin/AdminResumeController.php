@@ -5,10 +5,16 @@ namespace App\Controller\Admin;
 
 
 use App\Service\ContentHandler\ResumeHandler\DisplayResumeInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ * Class AdminResumeController
+ * @package App\Controller\Admin
+ */
 class AdminResumeController extends AbstractController
 {
     /**
