@@ -271,3 +271,7 @@ function debounce(func, wait, immediate) {
         if (immediate && !timeout) func.apply(context, args);
     };
 }
+
+$('.add-picture').click(function () {
+   window.location.href = $(this).data('url');
+});
