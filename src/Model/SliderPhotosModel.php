@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Collection\PictureCollection;
+use App\Entity\Picture;
 
 class SliderPhotosModel
 {
@@ -38,23 +39,37 @@ class SliderPhotosModel
 
     /**
      * @param array $pictures
-     * @param int $start
      */
     private function makeSlidersFromPictures(array $pictures)
     {
         $sliderPictures = [];
-        $count = count($pictures);
-        $nextSlide = 7;
-        for ($i = 0; $i < $count ;$i++) {
-            $sliderPictures[] = $pictures[$i];
-            if($i == $nextSlide){
+        $starterPos = 1;
+        $finishPos = 8;
+        
+        foreach ($pictures as $picture){
+            $this->recursiveCheck($picture,$sliderPictures,$starterPos,$finishPos);
+        }
+        if(!empty($sliderPictures)) {
+            $this->slides[] = new Slide($sliderPictures);
+            $sliderPictures = [];
+        }
+    }
+    
+    public function recursiveCheck(Picture $picture, array &$sliderPictures, int &$starterPos, int &$finishPos)
+    {
+        $currentPos = $picture->getSliderPosition();
+        if($currentPos <= $finishPos && $currentPos >= $starterPos){
+            $sliderPictures[] = $picture;
+            return;
+        }
+        else{
+            $starterPos = $finishPos;
+            $finishPos += 8;
+            if(!empty($sliderPictures)) {
                 $this->slides[] = new Slide($sliderPictures);
                 $sliderPictures = [];
-                $nextSlide += 8;
             }
+            $this->recursiveCheck($picture,$sliderPictures,$starterPos,$finishPos);
         }
-        if(!empty($sliderPictures))
-            $this->slides[] = new Slide($sliderPictures);
     }
-
 }

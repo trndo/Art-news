@@ -271,6 +271,26 @@ function debounce(func, wait, immediate) {
     };
 }
 
-$('.add-picture').click(function () {
+$(document).on('click','.add-picture',function () {
    window.location.href = $(this).data('url');
+});
+
+function addSlideBtn(slide) {
+    return '<li class="nav-item"> <a class="nav-link" href="#slide-'+slide+'" data-toggle="tab">Слайд '+slide+'</a></li>';
+}
+
+$('#addSlide').click(function () {
+    let slide = $(this).data('slide');
+    let counter = $('#counter').data('counter');
+    $.ajax('/api/nextSlide',{
+        type: 'GET',
+        data: {
+            slide,
+            counter
+        },
+        success(res){
+            $('.tab-pane').last().after(res);
+            $('.nav-item').last().before(addSlideBtn(slide));
+        }
+    })
 });

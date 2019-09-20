@@ -11,7 +11,7 @@
                                 {% if sliderContainer.slides is not empty %}
                                 {% for slide in sliderContainer.slides %}
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#slide-{{ loop.index }}" data-toggle="tab">Слайд {{ loop.index }}</a>
+                                    <a class="nav-link {% if loop.index == 1 %}active{% endif %}" href="#slide-{{ loop.index }}" data-toggle="tab">Слайд {{ loop.index }}</a>
                                 </li>
                                 {% endfor %}
                                 {% else %}
@@ -20,7 +20,7 @@
                                 </li>
                                 {% endif %}
                                 <li class="nav-item ml-2">
-                                    <button class="btn btn-secondary btn-round">Додати слайд &nbsp&nbsp<i class="fas fa-plus-circle"></i></button>
+                                    <button id="addSlide" data-slide="{{ sliderContainer.countSlides + 1 }}" class="btn btn-secondary btn-round">Додати слайд &nbsp&nbsp<i class="fas fa-plus-circle"></i></button>
                                 </li>
                             </ul>
                         </div>
@@ -91,17 +91,17 @@
                         <div class="tab-pane active" id="slide-1">
                             <div class="row">
                                 {% for i in 0..3 %}
-                                        <div class="col-3">
-                                            <div class="slide-section">
-                                                <div class="no-picture">
-                                                    {{ counter }}
-                                                    <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
-                                                        <i class="fas fa-plus-circle"></i>
-                                                    </div>
-                                                    {% set counter = counter + 1 %}
+                                    <div class="col-3">
+                                        <div class="slide-section">
+                                            <div class="no-picture">
+                                                {{ counter }}
+                                                <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
+                                                    <i class="fas fa-plus-circle"></i>
                                                 </div>
+                                                {% set counter = counter + 1 %}
                                             </div>
                                         </div>
+                                    </div>
                                 {% endfor %}
                             </div>
                             <div class="row mb-3 mt-3">
@@ -111,22 +111,23 @@
                             </div>
                             <div class="row">
                                 {% for i in 3..6 %}
-                                        <div class="col-3">
-                                            <div class="slide-section">
-                                                <div class="no-picture">
-                                                    {{ counter }}
-                                                    <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
-                                                        <i class="fas fa-plus-circle"></i>
-                                                    </div>
-                                                    {% set counter = counter + 1 %}
+                                    <div class="col-3">
+                                        <div class="slide-section">
+                                            <div class="no-picture">
+                                                {{ counter }}
+                                                <div class="add-picture" title="Додати малюнок" data-url="{{ path('picturesAddOnSlider',{'pos': counter}) }}">
+                                                    <i class="fas fa-plus-circle"></i>
                                                 </div>
+                                                {% set counter = counter + 1 %}
                                             </div>
                                         </div>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
                         {% endif %}
                     </div>
+                    <div id="counter" style="display: none" data-counter="{{ counter }}"></div>
                 </div>
             </div>
         </div>
