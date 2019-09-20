@@ -1,0 +1,187 @@
+.main_content{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.content{
+    /* overflow: hidden; */
+    height: 490px;
+    width: 630px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.slick-list{
+    /* display: block;
+    margin-left: -50px; */
+    height: 477px;
+    width: 620px;
+}
+
+.top_images{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.feedback_form{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.bottom_images{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.top_images > img{
+    width: 140px;
+    height: 140px;
+}
+.form_gallery{
+    width: 160px;
+    height: 146px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.form_gallery form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+.form_name_gallery input, .form_number_gallery input{
+    border: none;
+    /* outline: none; */
+    width: 160px;
+    height: 32px;
+    background: #FFFFFF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+.form_name_gallery input{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #03503B;
+}
+.form_number_gallery input{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #03503B;
+}
+.form_number_gallery{
+    margin-top: 9px;
+}
+
+.second_gallery{
+    width: 160px;
+    height: 19px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 9px;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #000000;
+}
+.button_gallery button{
+    margin-top: 17px;
+    width: 120px;
+    height: 32px;
+    background: #03503B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFFFF;
+    border: none;
+    transition: 0.3s all;
+}
+.button_gallery button:hover{
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
+}
+.button_gallery button:active{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+.next, .prev{
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 39px;
+    height: 39px;
+    background: #03503B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: 0.3s all;
+}
+.next{
+    top: 227px;
+    left: 100%;
+}
+.prev{
+    top: 281px;
+    left: 100%;
+}
+.next:hover, .prev:hover{
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
+}
+.next:active, .prev:active{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.slick-active{
+    outline: none;
+}
+.slick-dots{
+    margin-top: 25%;
+}
+.slick-dots li button::before{
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: #FFFFFF;
+    color: #FFFFFF;
+}
+.slick-dots li.slick-active button:before{
+    background: #03503B;
+}

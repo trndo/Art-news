@@ -1,0 +1,124 @@
+.main_content{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+.content{
+    height: 490px;
+    width: 630px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.slick-list{
+    /* display: block;
+    margin-left: -50px; */
+    height: 477px;
+    width: 620px;
+}
+.slide1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+div > img{
+    float: left;
+}
+.biography{
+    float: right;
+    height: 100%;
+    width: 295px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.header{
+    width: 295px;
+    height: 41px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-indent: 15px;
+
+    color: #03503B;
+}
+.information{
+    margin-top: 5%;
+    width: 295px;
+    height: 421px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /* or 125% */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #03503B;
+}
+.information p{
+    margin: 3px;
+}
+
+
+
+
+.next, .prev{
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 39px;
+    height: 39px;
+    background: #03503B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);      
+    transition: 0.3s all;
+}
+.next{
+    top: 227px;
+    left: 100%;
+}
+.prev{
+    top: 281px;
+    left: 100%;
+}
+.next:hover, .prev:hover{
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
+}
+.next:active, .prev:active{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.slick-active{
+    outline: none;
+}
+.slick-dots{
+    margin-top: 25%;
+}
+.slick-dots li button::before{
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: #FFFFFF;
+    color: #FFFFFF;
+}
+.slick-dots li.slick-active button:before{
+    background: #03503B;
+}
