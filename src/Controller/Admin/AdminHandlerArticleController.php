@@ -11,13 +11,18 @@ use App\Mapper\ArticleMapper;
 use App\Model\ContentModel;
 use App\Service\ContentHandler\ArticleHandler\ArticleHandlerInterface;
 use App\Service\ContentHandler\ArticleHandler\ArticleTranslationInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * @IsGranted("ROLE_ADMIN")
+ * Class AdminHandlerArticleController
+ * @package App\Controller\Admin
+ */
 class AdminHandlerArticleController extends AbstractController
 {
     /**
