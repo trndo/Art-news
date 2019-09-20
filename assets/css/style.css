@@ -54,7 +54,7 @@ main{
     cursor: pointer;
 }
 .lan_switch1::after{
-    content: 'RU';
+    content: 'UA';
     background-color: #03503B;
     border: 1px solid #03503B;
     color: #fff;

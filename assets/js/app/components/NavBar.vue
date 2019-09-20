@@ -7,10 +7,54 @@
         <label for="menu" class="toggleMenu menu-btn"><span></span></label>
         <div class="hidden_menu">
             <ul class="menu">
-                <li class="active"><a class="active_a" href="../html/gallery.html">Галлерея</a></li>
-                <li class="non_active"><a href="../html/cv.html">CV</a></li>
-                <li class="non_active"><a href="../html/contacts.html">Контакты</a></li>
-                <li class="non_active"><a href="../html/blog.html">Блог</a></li>
+                <router-link to="/" v-slot="{ href, route, navigate, isActive, isExactActive }">
+                    <template v-if="isExactActive">
+                        <li class="active">
+                            <a class="active_a" @click="navigate">{{$t("navbar.gallery")}}</a>
+                        </li>
+                    </template>
+                    <template v-else>
+                        <li class="non_active" @click="navigate">
+                            <a>{{$t("navbar.gallery")}}</a>
+                        </li>
+                    </template>
+                </router-link>
+                <router-link to="/cv" v-slot="{ href, route, navigate, isActive, isExactActive }">
+                    <template v-if="isActive">
+                        <li class="active">
+                            <a class="active_a">{{$t("navbar.cv")}}</a>
+                        </li>
+                    </template>
+                    <template v-else>
+                        <li class="non_active">
+                            <a @click="navigate">{{$t("navbar.cv")}}</a>
+                        </li>
+                    </template>
+                </router-link>
+                <router-link to="/contacts" v-slot="{ href, route, navigate, isActive, isExactActive }">
+                    <template v-if="isActive">
+                        <li class="active">
+                            <a class="active_a">{{$t("navbar.contacts")}}</a>
+                        </li>
+                    </template>
+                    <template v-else>
+                        <li class="non_active">
+                            <a @click="navigate">{{$t("navbar.contacts")}}</a>
+                        </li>
+                    </template>
+                </router-link>
+                <router-link to="/blog" v-slot="{ href, route, navigate, isActive, isExactActive }">
+                    <template v-if="isActive">
+                        <li class="active">
+                            <a class="active_a">{{$t("navbar.blog")}}</a>
+                        </li>
+                    </template>
+                    <template v-else>
+                        <li class="non_active">
+                            <a @click="navigate">{{$t("navbar.blog")}}</a>
+                        </li>
+                    </template>
+                </router-link>
             </ul>
             <div class="language_hidden">
                 <input type="checkbox" class="checkbox_hidden">

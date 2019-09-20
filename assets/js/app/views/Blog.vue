@@ -28,7 +28,7 @@
                                     </p>
                                     <div class="more_information">
                                         <a href="">
-                                            Подробнее
+                                            {{$t('blog_page.more')}}
                                         </a>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     </p>
                                     <div class="more_information">
                                         <a href="">
-                                            Подробнее
+                                            {{$t('blog_page.more')}}
                                         </a>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                     </p>
                                     <div class="more_information">
                                         <a href="">
-                                            Подробнее
+                                            {{$t('blog_page.more')}}
                                         </a>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                                     </p>
                                     <div class="more_information">
                                         <a href="">
-                                            Подробнее
+                                            {{$t('blog_page.more')}}
                                         </a>
                                     </div>
                                 </div>

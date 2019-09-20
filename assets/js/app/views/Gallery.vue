@@ -62,9 +62,7 @@
                                         <input name="tel" type="tel" pattern="^\+38\d{3}\d{3}\d{2}\d{2}$"
                                                maxlength="13" placeholder="+38(000)000 00 00" required>
                                     </div>
-                                    <span class="second_gallery">
-                                поля обязательны к заполнению
-                                </span>
+                                    <span class="second_gallery">поля обязательны к заполнению</span>
                                     <div class="button_gallery">
                                         <button type="submit">
                                             Отправить
@@ -98,9 +96,7 @@
                                         <input name="tel" type="tel" pattern="^\+38\d{3}\d{3}\d{2}\d{2}$"
                                                maxlength="13" placeholder="+38(000)000 00 00" required>
                                     </div>
-                                    <span class="second_gallery">
-                        поля обязательны к заполнению
-                    </span>
+                                    <span class="second_gallery">поля обязательны к заполнению</span>
                                     <div class="button_gallery">
                                         <button type="submit">
                                             Отправить

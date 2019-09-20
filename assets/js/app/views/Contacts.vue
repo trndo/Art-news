@@ -79,7 +79,7 @@
                     <div class="form">
                         <form action="./contacts.html" target="_blank" method="POST">
             <span class="first">
-                Мы с вами свяжемся
+                {{$t('contacts_page.form_head')}}
             </span>
                             <div class="name">
                                 <input id="name" name="user_name" type="text" placeholder="Имя" required>
@@ -89,11 +89,11 @@
                                        maxlength="13" placeholder="+38(000)000 00 00" required>
                             </div>
                             <span class="second">
-                поля обязательны к заполнению
+               {{$t('contacts_page.addictive')}}
             </span>
                             <div class="button">
                                 <button type="submit">
-                                    Отправить
+                                    {{$t('contacts_page.send')}}
                                 </button>
                             </div>
                         </form>
