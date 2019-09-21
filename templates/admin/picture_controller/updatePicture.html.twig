@@ -21,11 +21,12 @@
                             'label' : 'Титульна фотографія'
                         }) }}
                     </div>
-                    {% for additionPhoto in picture.photos %}
-                        <img src="/uploads/pictures/{{ additionPhoto.photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
-                        {% for photo in form.photos %}
+                    {% set counter = 0 %}
+                    {% for photo in form.photos %}
+                        <img src="/uploads/pictures/{{ picture.photos[counter].photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
                             {{ form_widget(photo.photo) }}
-                        {% endfor %}
+                        <br>
+                        {% set counter = counter + 1 %}
                     {% endfor %}
                     <div class="form-group">
                         {{ form_row(form.save, {

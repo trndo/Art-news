@@ -129,6 +129,7 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
     {
         if ($picture) {
             $this->fileUploader->deleteFile(self::UPLOADS_IMAGES_DIR, $picture->getPhoto());
+            $this->deleteAdditionalPhotos($picture, $picture->getPhotos()->toArray());
             $this->em->remove($picture);
             $this->em->flush();
         }
@@ -174,6 +175,16 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
                 $uploadedAdditionPicture = $this->fileUploader->uploadFile($photos[$counter]['photo'], self::UPLOADS_IMAGES_DIR);
                 $additionalPicture->setPhoto($uploadedAdditionPicture);
                 $counter++;
+            }
+        }
+    }
+
+    private function deleteAdditionalPhotos(Picture $picture, array $additionalPhotos): void
+    {
+        if ($additionalPhotos) {
+            /** @var Photo $photo */
+            foreach ($additionalPhotos as $photo) {
+                $this->fileUploader->deleteFile(self::UPLOADS_IMAGES_DIR, $photo->getPhoto());
             }
         }
     }
