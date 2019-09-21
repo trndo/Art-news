@@ -6,6 +6,7 @@ use App\Entity\Picture;
 use App\Entity\PictureTranslation;
 use App\Form\ContentType;
 use App\Form\PictureType;
+use App\Form\UpdatePicturePhotosType;
 use App\Mapper\PictureMapper;
 use App\Model\PictureModel;
 use App\Service\PictureHandler\PictureHandlerInterface;
@@ -50,13 +51,27 @@ class AdminPictureHandlerController extends AbstractController
     /**
      * @Route("/artadmin/pictures/{id}/edit", name="updatePicture")
      *
+     * @param Picture $picture
      * @param PictureHandlerInterface $pictureHandler
      * @param Request $request
      * @return Response
      */
-    public function updatePicture(PictureHandlerInterface $pictureHandler, Request $request): Response
+    public function updatePicture(Picture $picture, PictureHandlerInterface $pictureHandler, Request $request): Response
     {
+        $pictureModel = PictureMapper::entityToModel($picture);
+        $form = $this->createForm(UpdatePicturePhotosType::class, $pictureModel);
+        $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()) {
+            $photos = $request->files->all()['update_picture_photos']['photos'];
+            $pictureHandler->updatePicture($form->getData(), $picture, $photos);
+            return $this->redirectToRoute('pictures');
+        }
+
+        return $this->render('admin/picture_controller/updatePicture.html.twig', [
+            'form' => $form->createView(),
+            'picture' => $picture
+        ]);
     }
 
     /**

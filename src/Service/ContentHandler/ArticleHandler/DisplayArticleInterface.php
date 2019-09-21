@@ -9,7 +9,7 @@ use App\Entity\Article;
 
 interface DisplayArticleInterface
 {
-    public function showArticles(): ?ArticleCollection;
+    public function showArticles(string $locale = null): ?ArticleCollection;
 
     public function showArticleBy(?string $slug): ?Article;
 

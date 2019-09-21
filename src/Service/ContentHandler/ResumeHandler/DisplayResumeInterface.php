@@ -7,5 +7,5 @@ use App\Collection\ResumeCollection;
 
 interface DisplayResumeInterface
 {
-    public function showSlides(): ?ResumeCollection;
+    public function showSlides(string $locale = null): ?ResumeCollection;
 }

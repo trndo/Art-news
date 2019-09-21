@@ -93,9 +93,9 @@ class ResumeHandler implements ResumeHandlerInterface, DisplayResumeInterface, R
 
     }
 
-    public function showSlides(): ?ResumeCollection
+    public function showSlides(string $locale = null): ?ResumeCollection
     {
-        return new ResumeCollection($this->resumeRepository->getAllSlides());
+        return new ResumeCollection($this->resumeRepository->getAllSlides($locale));
     }
 
     public function createResumeTranslation(Resume $resume, ContentModel $model): void

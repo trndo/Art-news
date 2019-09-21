@@ -14,12 +14,14 @@ class ApiArticleController extends AbstractController
     /**
      * @Route("/api/articles", methods={"GET"})
      *
+     * @param Request $request
      * @param DisplayArticleInterface $displayArticle
      * @return JsonResponse
      */
-    public function getArticles(DisplayArticleInterface $displayArticle): JsonResponse
+    public function getArticles(Request $request, DisplayArticleInterface $displayArticle): JsonResponse
     {
-        $articles = $displayArticle->showArticles();
+        $locale = $request->query->get('locale');
+        $articles = $displayArticle->showArticles($locale);
 
         return new JsonResponse([
             'articles' => $articles

@@ -14,10 +14,11 @@ class ApiSettingsController extends AbstractController
 {
     /**
      * @Route("/api/settings", methods={"GET"})
+     * @param Request $request
      * @param SettingsHandlerInterface $settingsHandler
      * @return JsonResponse
      */
-    public function getSettings(SettingsHandlerInterface $settingsHandler): JsonResponse
+    public function getSettings(Request $request, SettingsHandlerInterface $settingsHandler): JsonResponse
     {
         $settings = $settingsHandler->showSettings();
 

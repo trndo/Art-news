@@ -67,7 +67,7 @@
                                                 {{ picture.createdAt|date("Y-m-d") }}
                                             </td>
                                             <td class="td-actions">
-                                                <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href='{#{{ path('updateArticle',{'id': article.id}) }}#}'">
+                                                <button type="button" rel="tooltip" class="btn btn-success" onclick="window.location.href='{{ path('updatePicture',{'id': picture.id}) }}'">
                                                     <i class="material-icons">edit</i>
                                                 </button>
                                                 <button type="button" rel="tooltip" class="btn btn-danger" onclick="window.location.href='{{ path('deletePicture',{'id': picture.id}) }}'">

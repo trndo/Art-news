@@ -19,13 +19,18 @@ class ResumeRepository extends ServiceEntityRepository
         parent::__construct($registry, Resume::class);
     }
 
-    public function getAllSlides(): ?array
+    public function getAllSlides(string $locale = null): ?array
     {
-        return $this->createQueryBuilder('r')
+        $query = $this->createQueryBuilder('r')
             ->addSelect('rt')
-            ->leftJoin('r.resumeTranslations','rt')
-            ->getQuery()
-            ->getResult();
+            ->leftJoin('r.resumeTranslations', 'rt');
+
+        if($locale)
+        $query->andWhere('rt.locale = :locale')
+            ->setParameter('locale', $locale);
+
+        return $query->getQuery()
+                    ->getResult();
     }
 
 

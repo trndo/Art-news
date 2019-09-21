@@ -18,6 +18,7 @@ class ApiPictureController extends AbstractController
     {
        $counter =  $request->query->getInt('counter');
        $slide = $request->query->getInt('slide');
+
        return $this->render('admin/elements/slide.html.twig', [
            'counter' => $counter,
            'slide' => $slide

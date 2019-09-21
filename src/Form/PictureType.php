@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Model\PictureModel;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -36,7 +37,14 @@ class PictureType extends AbstractType
                     'readonly' => true
                 ],
                 'label' => 'Мова',
-
+            ])
+            ->add('photos', CollectionType::class,[
+                'entry_type' => PicturePhotoType::class,
+                'entry_options' => [
+                    'label' => false
+                ],
+                'allow_add' => true,
+                'label' => false
             ])
             ->add('save', SubmitType::class);
     }

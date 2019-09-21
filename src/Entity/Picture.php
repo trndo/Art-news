@@ -32,7 +32,7 @@ class Picture
     private $pictureTranslations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="picture")
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="picture", cascade={"persist","remove"})
      */
     private $photos;
 

@@ -19,12 +19,17 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function getAllArticles(): ?array
+    public function getAllArticles(string $locale = null): ?array
     {
-        return $this->createQueryBuilder('a')
+         $query = $this->createQueryBuilder('a')
             ->addSelect('at')
-            ->leftJoin('a.articleTranslations','at')
-            ->getQuery()
+            ->leftJoin('a.articleTranslations','at');
+
+        if ($locale)
+        $query->andWhere('at.locale = :locale')
+            ->setParameter('locale',$locale);
+
+        return $query->getQuery()
             ->getResult();
     }
 

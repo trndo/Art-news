@@ -5,6 +5,7 @@ namespace App\Service\PictureHandler;
 use App\Collection\PictureCollection;
 use App\Entity\Picture;
 use App\Model\PictureModel;
+use App\Model\UpdatePictureModel;
 
 interface PictureHandlerInterface
 {
@@ -19,6 +20,13 @@ interface PictureHandlerInterface
      * @param PictureModel $pictureModel
      */
     public function createPicture(PictureModel $pictureModel): void;
+
+    /**
+     * @param UpdatePictureModel $model
+     * @param Picture $picture
+     * @param array $photos
+     */
+    public function updatePicture(UpdatePictureModel $model, Picture $picture, array $photos): void ;
 
     /**
      * @param Picture $picture

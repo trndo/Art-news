@@ -11,31 +11,9 @@
             <div class="row">
                 <div class="col-12">
                     {{ form_start(form) }}
-                    <div class="form-group">
-                        {{ form_row(form.locale,{
-                            'attr': {
-                                'class': 'form-control'
-                            }
-                        }) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_row(form.title,{
-                            'attr': {
-                                'class': 'textarea form-control'
-                            }
-                        }) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_widget(form.body,{
-                            'attr': {
-                                'class': 'form-control',
-                                'placeholder':'Зміст статті',
-                                'rows': 10
-                            },
-
-                        }) }}
-                    </div>
                     <div class="form-group form-file-upload form-file-multiple">
+                        <br>
+                        <img src="/uploads/pictures/{{ picture.photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
                         {{ form_row(form.photo,{
                             'attr': {
                                 'class': 'form-control inputFileVisible'
@@ -43,14 +21,14 @@
                             'label' : 'Титульна фотографія'
                         }) }}
                     </div>
-
-                    <ul class="tags" data-prototype="{{ form_widget(form.photos.vars.prototype)|e('html_attr') }}">
-                        <li>Натиснувши на кнопку "Додати фото" - ви зможете завантажити додаткові фотографії</li>
-                    </ul>
-
-
+                    {% for additionPhoto in picture.photos %}
+                        <img src="/uploads/pictures/{{ additionPhoto.photo }}" alt="article" style="object-fit: contain" width="250px" height="250px">
+                        {% for photo in form.photos %}
+                            {{ form_widget(photo.photo) }}
+                        {% endfor %}
+                    {% endfor %}
                     <div class="form-group">
-                        {{ form_row(form.save,{
+                        {{ form_row(form.save, {
                             'attr': {
                                 'class': 'btn btn-primary'
                             }

@@ -3,15 +3,18 @@
 namespace App\Service\PictureHandler;
 
 use App\Collection\PictureCollection;
+use App\Entity\Photo;
 use App\Entity\Picture;
 use App\Entity\PictureTranslation;
 use App\Model\ContentModel;
 use App\Model\PictureModel;
+use App\Model\UpdatePictureModel;
 use App\Repository\PictureRepository;
 use App\Repository\PictureTranslationRepository;
 use App\Service\FileManager\FileManager;
 use App\Service\FileManager\FileManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PictureHandler implements PictureHandlerInterface, PictureTranslationHandlerInterface
 {
@@ -78,8 +81,18 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
     {
         $picture = new Picture();
         $picture->setPhoto($this->fileUploader->uploadFile($pictureModel->getPhoto(),self::UPLOADS_IMAGES_DIR));
+        $this->savePhotos($pictureModel->getPhotos(), $picture);
         $this->em->persist($picture);
         $this->createPictureTranslation($picture,$pictureModel);
+    }
+
+    public function updatePicture(UpdatePictureModel $model, Picture $picture, array $photos): void
+    {
+        $newTitlePhoto = $this->fileUploader->uploadFile($model->getPhoto(), self::UPLOADS_IMAGES_DIR);
+        $picture->setPhoto($newTitlePhoto);
+        $this->updatePhotos($photos, $picture->getPhotos()->toArray());
+
+        $this->em->flush();
     }
 
     /**
@@ -138,6 +151,30 @@ class PictureHandler implements PictureHandlerInterface, PictureTranslationHandl
         if($picture instanceof Picture){
             $picture->setSliderPosition($position);
             $this->em->flush();
+        }
+    }
+
+    private function savePhotos(array $photos, Picture $picture): void
+    {
+        if ($photos) {
+            foreach ($photos as $key => $photo) {
+                $additionPicture = new Photo();
+                $uploadedAdditionPicture = $this->fileUploader->uploadFile($photo['photo'], self::UPLOADS_IMAGES_DIR);
+                $additionPicture->setPhoto($uploadedAdditionPicture);
+                $picture->addPhoto($additionPicture);
+            }
+        }
+    }
+
+    private function updatePhotos(array $photos, array $additionalPictures): void
+    {
+        if ($photos) {
+            $counter = 0;
+            foreach ($additionalPictures as $additionalPicture) {
+                $uploadedAdditionPicture = $this->fileUploader->uploadFile($photos[$counter]['photo'], self::UPLOADS_IMAGES_DIR);
+                $additionalPicture->setPhoto($uploadedAdditionPicture);
+                $counter++;
+            }
         }
     }
 }

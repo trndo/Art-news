@@ -102,9 +102,9 @@ class ArticleHandler implements DisplayArticleInterface, ArticleHandlerInterface
         $this->entityManager->flush();
     }
 
-    public function showArticles(): ?ArticleCollection
+    public function showArticles(string $locale = null): ?ArticleCollection
     {
-        return new ArticleCollection($this->articleRepository->getAllArticles());
+        return new ArticleCollection($this->articleRepository->getAllArticles($locale));
     }
 
     public function createArticleTranslation(Article $article, ContentModel $model): void
